@@ -1,0 +1,728 @@
+{
+  "techniques": {
+    "bm25": {
+      "per_property": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": -0.0019,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": -0.0158,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": -0.0053,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": -0.0074,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": -0.0021,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": -0.001,
+          "risk": "Medium"
+        }
+      },
+      "overall": {
+        "avg_transparency": 0.0,
+        "median_transparency": 0.0,
+        "fully_transparent": 0,
+        "partially_transparent": 0,
+        "not_transparent": 915,
+        "total_scored": 915
+      },
+      "by_language": {
+        "typescript": {
+          "count": 266,
+          "avg_transparency": 0.0
+        },
+        "python": {
+          "count": 593,
+          "avg_transparency": 0.0
+        },
+        "javascript": {
+          "count": 56,
+          "avg_transparency": 0.0
+        }
+      },
+      "missing_rates": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "missing": 67,
+          "missing_rate": 1.0,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "missing": 119,
+          "missing_rate": 1.0,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "missing": 296,
+          "missing_rate": 1.0,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "missing": 117,
+          "missing_rate": 1.0,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "missing": 411,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "missing": 11,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        }
+      },
+      "desc_length_impact": {
+        "short_lt50": {
+          "count": 154,
+          "avg_transparency": 0.0
+        },
+        "medium_50_200": {
+          "count": 392,
+          "avg_transparency": 0.0
+        },
+        "long_gt200": {
+          "count": 369,
+          "avg_transparency": 0.0
+        }
+      }
+    },
+    "jaccard_ngram": {
+      "per_property": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 61,
+          "rate": 0.9104,
+          "avg_similarity": 0.2115,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 115,
+          "rate": 0.9664,
+          "avg_similarity": 0.2642,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 289,
+          "rate": 0.9764,
+          "avg_similarity": 0.2552,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 113,
+          "rate": 0.9658,
+          "avg_similarity": 0.2709,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 400,
+          "rate": 0.9732,
+          "avg_similarity": 0.2678,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 11,
+          "rate": 1.0,
+          "avg_similarity": 0.3032,
+          "risk": "Medium"
+        }
+      },
+      "overall": {
+        "avg_transparency": 0.9672,
+        "median_transparency": 1.0,
+        "fully_transparent": 885,
+        "partially_transparent": 0,
+        "not_transparent": 30,
+        "total_scored": 915
+      },
+      "by_language": {
+        "typescript": {
+          "count": 266,
+          "avg_transparency": 0.9699
+        },
+        "python": {
+          "count": 593,
+          "avg_transparency": 0.968
+        },
+        "javascript": {
+          "count": 56,
+          "avg_transparency": 0.9464
+        }
+      },
+      "missing_rates": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "missing": 6,
+          "missing_rate": 0.0896,
+          "risk": "Critical"
+        },
+        "DATABASE": {
+          "total": 117,
+          "missing": 4,
+          "missing_rate": 0.0342,
+          "risk": "High"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "missing": 4,
+          "missing_rate": 0.0336,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "missing": 11,
+          "missing_rate": 0.0268,
+          "risk": "Medium"
+        },
+        "NETWORK": {
+          "total": 296,
+          "missing": 7,
+          "missing_rate": 0.0236,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "missing": 0,
+          "missing_rate": 0.0,
+          "risk": "Medium"
+        }
+      },
+      "desc_length_impact": {
+        "short_lt50": {
+          "count": 154,
+          "avg_transparency": 0.8312
+        },
+        "medium_50_200": {
+          "count": 392,
+          "avg_transparency": 0.9898
+        },
+        "long_gt200": {
+          "count": 369,
+          "avg_transparency": 1.0
+        }
+      }
+    },
+    "keyword": {
+      "per_property": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 7,
+          "rate": 0.1045,
+          "avg_similarity": 0.0062,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 74,
+          "rate": 0.6218,
+          "avg_similarity": 0.0328,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 125,
+          "rate": 0.4223,
+          "avg_similarity": 0.0271,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 79,
+          "rate": 0.6752,
+          "avg_similarity": 0.0519,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 88,
+          "rate": 0.2141,
+          "avg_similarity": 0.0222,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "Medium"
+        }
+      },
+      "overall": {
+        "avg_transparency": 0.3683,
+        "median_transparency": 0.0,
+        "fully_transparent": 320,
+        "partially_transparent": 34,
+        "not_transparent": 561,
+        "total_scored": 915
+      },
+      "by_language": {
+        "typescript": {
+          "count": 266,
+          "avg_transparency": 0.312
+        },
+        "python": {
+          "count": 593,
+          "avg_transparency": 0.4266
+        },
+        "javascript": {
+          "count": 56,
+          "avg_transparency": 0.0179
+        }
+      },
+      "missing_rates": {
+        "CRYPTO": {
+          "total": 11,
+          "missing": 11,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "missing": 60,
+          "missing_rate": 0.8955,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "missing": 323,
+          "missing_rate": 0.7859,
+          "risk": "Medium"
+        },
+        "NETWORK": {
+          "total": 296,
+          "missing": 171,
+          "missing_rate": 0.5777,
+          "risk": "High"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "missing": 45,
+          "missing_rate": 0.3782,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "missing": 38,
+          "missing_rate": 0.3248,
+          "risk": "High"
+        }
+      },
+      "desc_length_impact": {
+        "short_lt50": {
+          "count": 154,
+          "avg_transparency": 0.1818
+        },
+        "medium_50_200": {
+          "count": 392,
+          "avg_transparency": 0.2258
+        },
+        "long_gt200": {
+          "count": 369,
+          "avg_transparency": 0.5976
+        }
+      }
+    },
+    "sentence_embedding": {
+      "per_property": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 1,
+          "rate": 0.0149,
+          "avg_similarity": 0.0816,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 8,
+          "rate": 0.0672,
+          "avg_similarity": 0.1572,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 4,
+          "rate": 0.0135,
+          "avg_similarity": 0.1253,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 11,
+          "rate": 0.094,
+          "avg_similarity": 0.1954,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 8,
+          "rate": 0.0195,
+          "avg_similarity": 0.1054,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.1192,
+          "risk": "Medium"
+        }
+      },
+      "overall": {
+        "avg_transparency": 0.0322,
+        "median_transparency": 0.0,
+        "fully_transparent": 27,
+        "partially_transparent": 5,
+        "not_transparent": 883,
+        "total_scored": 915
+      },
+      "by_language": {
+        "typescript": {
+          "count": 266,
+          "avg_transparency": 0.0564
+        },
+        "python": {
+          "count": 593,
+          "avg_transparency": 0.0245
+        },
+        "javascript": {
+          "count": 56,
+          "avg_transparency": 0.0
+        }
+      },
+      "missing_rates": {
+        "CRYPTO": {
+          "total": 11,
+          "missing": 11,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        },
+        "NETWORK": {
+          "total": 296,
+          "missing": 292,
+          "missing_rate": 0.9865,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "missing": 66,
+          "missing_rate": 0.9851,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "missing": 403,
+          "missing_rate": 0.9805,
+          "risk": "Medium"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "missing": 111,
+          "missing_rate": 0.9328,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "missing": 106,
+          "missing_rate": 0.906,
+          "risk": "High"
+        }
+      },
+      "desc_length_impact": {
+        "short_lt50": {
+          "count": 154,
+          "avg_transparency": 0.0357
+        },
+        "medium_50_200": {
+          "count": 392,
+          "avg_transparency": 0.023
+        },
+        "long_gt200": {
+          "count": 369,
+          "avg_transparency": 0.0407
+        }
+      }
+    },
+    "tfidf_cosine": {
+      "per_property": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0133,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 39,
+          "rate": 0.3277,
+          "avg_similarity": 0.092,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 13,
+          "rate": 0.0439,
+          "avg_similarity": 0.0342,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 20,
+          "rate": 0.1709,
+          "avg_similarity": 0.0603,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 40,
+          "rate": 0.0973,
+          "avg_similarity": 0.0423,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0436,
+          "risk": "Medium"
+        }
+      },
+      "overall": {
+        "avg_transparency": 0.1168,
+        "median_transparency": 0.0,
+        "fully_transparent": 102,
+        "partially_transparent": 10,
+        "not_transparent": 803,
+        "total_scored": 915
+      },
+      "by_language": {
+        "typescript": {
+          "count": 266,
+          "avg_transparency": 0.1992
+        },
+        "python": {
+          "count": 593,
+          "avg_transparency": 0.0908
+        },
+        "javascript": {
+          "count": 56,
+          "avg_transparency": 0.0
+        }
+      },
+      "missing_rates": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "missing": 67,
+          "missing_rate": 1.0,
+          "risk": "Critical"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "missing": 11,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        },
+        "NETWORK": {
+          "total": 296,
+          "missing": 283,
+          "missing_rate": 0.9561,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "missing": 371,
+          "missing_rate": 0.9027,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "missing": 97,
+          "missing_rate": 0.8291,
+          "risk": "High"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "missing": 80,
+          "missing_rate": 0.6723,
+          "risk": "High"
+        }
+      },
+      "desc_length_impact": {
+        "short_lt50": {
+          "count": 154,
+          "avg_transparency": 0.1104
+        },
+        "medium_50_200": {
+          "count": 392,
+          "avg_transparency": 0.0497
+        },
+        "long_gt200": {
+          "count": 369,
+          "avg_transparency": 0.1906
+        }
+      }
+    },
+    "wmd": {
+      "per_property": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "avg_similarity": 0.0,
+          "risk": "Medium"
+        }
+      },
+      "overall": {
+        "avg_transparency": 0.0,
+        "median_transparency": 0.0,
+        "fully_transparent": 0,
+        "partially_transparent": 0,
+        "not_transparent": 915,
+        "total_scored": 915
+      },
+      "by_language": {
+        "typescript": {
+          "count": 266,
+          "avg_transparency": 0.0
+        },
+        "python": {
+          "count": 593,
+          "avg_transparency": 0.0
+        },
+        "javascript": {
+          "count": 56,
+          "avg_transparency": 0.0
+        }
+      },
+      "missing_rates": {
+        "COMMAND_EXEC": {
+          "total": 67,
+          "missing": 67,
+          "missing_rate": 1.0,
+          "risk": "Critical"
+        },
+        "FILE_SYSTEM": {
+          "total": 119,
+          "missing": 119,
+          "missing_rate": 1.0,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "missing": 296,
+          "missing_rate": 1.0,
+          "risk": "High"
+        },
+        "DATABASE": {
+          "total": 117,
+          "missing": 117,
+          "missing_rate": 1.0,
+          "risk": "High"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "missing": 411,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "missing": 11,
+          "missing_rate": 1.0,
+          "risk": "Medium"
+        }
+      },
+      "desc_length_impact": {
+        "short_lt50": {
+          "count": 154,
+          "avg_transparency": 0.0
+        },
+        "medium_50_200": {
+          "count": 392,
+          "avg_transparency": 0.0
+        },
+        "long_gt200": {
+          "count": 369,
+          "avg_transparency": 0.0
+        }
+      }
+    }
+  },
+  "total_tools": 6877,
+  "tools_with_srms": 1153,
+  "tools_with_description": 4821,
+  "analyzable": 915
+}

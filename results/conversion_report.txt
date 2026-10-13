@@ -1,0 +1,1187 @@
+INDEPENDENT GROUND TRUTH CONVERSION REPORT
+============================================================
+
+Method: Re-map raw API invocations from source code
+against trusted security registry (CodeQL/Semgrep/Bandit).
+Properties are derived from our registry, NOT A-WiSeM.
+
+Input: data/tools_with_descriptions.jsonl
+Output: data/independent_dataset.jsonl
+
+Total repos: 379
+Total tools: 6877
+Tools with security ops: 1153
+  with description: 915
+  without description: 238
+
+Property distribution:
+  COMMAND_EXEC         76
+  FILE_SYSTEM          193
+  NETWORK              347
+  DATABASE             129
+  INFO_EXPOSURE        527
+  CRYPTO               13
+  DESERIALIZATION      0
+  AUTH                 0
+
+
+TRUSTED REGISTRY CONTENTS:
+============================================================
+================================================================================
+TRUSTED SECURITY OPERATIONS REGISTRY
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+Property: COMMAND_EXEC (Risk: Critical)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-078 - Improper Neutralization of Special Elements used in an OS Command (OS Command Injection)
+  CWE: CWE-094 - Improper Control of Generation of Code (Code Injection)
+  CWE: CWE-095 - Improper Neutralization of Directives in Dynamically Evaluated Code (Eval Injection)
+
+  PYTHON Operations:
+    APIs: subprocess.run, subprocess.call, subprocess.Popen, subprocess.check_output, subprocess.check_call (+2 more)
+      Source: CodeQL py/command-line-injection
+      Source: Bandit B603 (subprocess_without_shell_equals_true)
+      Source: Bandit B604 (any_other_function_with_shell_equals_true)
+      Source: Bandit B607 (start_process_with_partial_path)
+      Source: Semgrep python.lang.security.audit.subprocess-shell-true
+    APIs: os.system
+      Source: CodeQL py/command-line-injection
+      Source: Bandit B605 (start_process_with_a_shell)
+    APIs: os.popen, os.popen2, os.popen3, os.popen4
+      Source: Bandit B605 (start_process_with_a_shell)
+    APIs: os.execl, os.execle, os.execlp, os.execlpe, os.execv (+11 more)
+      Source: Bandit B606 (start_process_with_no_shell)
+    APIs: eval
+      Source: CodeQL py/code-injection
+      Source: Bandit B307 (eval)
+    APIs: exec
+      Source: CodeQL py/code-injection
+      Source: Bandit B102 (exec_used)
+    APIs: compile
+      Source: CodeQL py/code-injection
+
+  TYPESCRIPT Operations:
+    APIs: child_process.exec, child_process.execSync, child_process.spawn, child_process.spawnSync, child_process.execFile (+2 more)
+      Source: CodeQL js/command-line-injection
+      Source: Semgrep javascript.lang.security.audit.child-process
+    APIs: eval
+      Source: CodeQL js/code-injection
+      Source: Semgrep javascript.lang.security.audit.eval-detected
+    APIs: Function
+      Source: CodeQL js/code-injection
+    APIs: vm.runInContext, vm.runInNewContext, vm.runInThisContext, vm.createContext
+      Source: CodeQL js/code-injection
+
+  JAVASCRIPT Operations:
+    APIs: child_process.exec, child_process.execSync, child_process.spawn, child_process.spawnSync, child_process.execFile (+2 more)
+      Source: CodeQL js/command-line-injection
+      Source: Semgrep javascript.lang.security.audit.child-process
+    APIs: eval
+      Source: CodeQL js/code-injection
+      Source: Semgrep javascript.lang.security.audit.eval-detected
+    APIs: Function
+      Source: CodeQL js/code-injection
+    APIs: vm.runInContext, vm.runInNewContext, vm.runInThisContext, vm.createContext
+      Source: CodeQL js/code-injection
+
+  Derived Keywords (114):
+    "a code" <- CWE-94: '...) The product constructs all or part of a code segment using externally-influenced inp...'
+    "a command" <- CodeQL py/command-line-injection: '...Using externally controlled strings in a command line may allow a malicious user to chan...'
+    "allow a" <- CodeQL py/command-line-injection: '...ontrolled strings in a command line may allow a malicious user to change the meaning of...'
+    "allows a" <- CodeQL py/code-injection: '...rpreting unsanitized user input as code allows a malicious user to perform arbitrary cod...'
+    "alternate" <- CWE-78: '...ng system, such as in web applications. Alternately, if the weakness occurs in a privileg...'
+    "an os" <- CWE-78: '...tralization of Special Elements used in an OS Command ('OS Command Injection') The pr...'
+    "any_other_function_with_shell_equals_true" <- Bandit B604: '...--------------------------------- B604: any_other_function_with_shell_equals_true ---------------------------------------...'
+    "arbitrary" <- CWE-78: '...control, then the attacker can execute arbitrary commands or programs. If the command is...'
+    "arbitrary commands" <- CWE-78: '...control, then the attacker can execute arbitrary commands or programs. If the command is being ex...'
+    "argument" <- CWE-78: '...ds to use externally-supplied inputs as arguments to that program. For example, the prog...'
+    "arguments" <- CWE-78: '...ds to use externally-supplied inputs as arguments to that program. For example, the progr...'
+    "as code" <- CodeQL py/code-injection: '...ion Interpreting unsanitized user input as code allows a malicious user to perform arbi...'
+    "attacker does" <- CWE-78: '...nerability in environments in which the attacker does not have direct access to the operating...'
+    "autofunction" <- Bandit B603: '...ule:: bandit.plugins.injection_shell .. autofunction:: subprocess_without_shell_equals_true...'
+    "bandit" <- Bandit B603: '...-------------------- .. currentmodule:: bandit.plugins.injection_shell .. autofunction...'
+    "change the" <- CodeQL py/command-line-injection: '...mand line may allow a malicious user to change the meaning of the command.'
+    "code" <- CWE-94: '...name: Improper Control of Generation of Code ('Code Injection') The product construc...'
+    "code allows" <- CodeQL py/code-injection: '...Interpreting unsanitized user input as code allows a malicious user to perform arbitrary c...'
+    "code injection" <- CWE-94: '...mproper Control of Generation of Code ('Code Injection') The product constructs all or part of...'
+    "code segment" <- CWE-94: '...The product constructs all or part of a code segment using externally-influenced input from...'
+    "command" <- CWE-78: '...ation of Special Elements used in an OS Command ('OS Command Injection') The product co...'
+    "command injection" <- CWE-78: '...ial Elements used in an OS Command ('OS Command Injection') The product constructs all or part of...'
+    "command is" <- CWE-78: '...] that was supplied by the user. If the COMMAND is under attacker control, then the attack...'
+    "command line" <- CodeQL py/command-line-injection: 'Query: Uncontrolled command line Using externally controlled strings in...'
+    "command to" <- CWE-78: '...pplication simply redirects this entire command to the operating system. For example, the...'
+    "commands" <- CWE-78: '...it could allow the attacker to specify commands that normally would not be accessible,...'
+    "content" <- Semgrep javascript.lang.security.audit.eval-detected: '...e dangerous if used to evaluate dynamic content. If this content can be input from outs...'
+    "control" <- CWE-78: '...f least privilege, because the attacker-controlled commands may run with special system...'
+    "control of" <- CWE-94: 'CWE name: Improper Control of Generation of Code ('Code Injection') T...'
+    "controlled strings" <- CodeQL py/command-line-injection: '...ontrolled command line Using externally controlled strings in a command line may allow a malicious...'
+    "currentmodule" <- Bandit B603: '...------------------------------------ .. currentmodule:: bandit.plugins.injection_shell .. aut...'
+    "directives" <- CWE-95: 'CWE name: Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval In...'
+    "directives in" <- CWE-95: 'CWE name: Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injec...'
+    "docs" <- Bandit B102: '...'s `exec` method or keyword. The Python docs succinctly describe why the use of `exe...'
+    "dynamically" <- CWE-95: '...mproper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection') The p...'
+    "dynamically evaluated" <- CWE-95: '...mproper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection') The product rec...'
+    "elements" <- CWE-78: '...ame: Improper Neutralization of Special Elements used in an OS Command ('OS Command Inje...'
+    "elements used" <- CWE-78: '...ame: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection...'
+    "eval" <- CWE-95: '...ralization of Directives in Dynamically Evaluated Code ('Eval Injection') The produc...'
+    "eval injection" <- CWE-95: '...ectives in Dynamically Evaluated Code ('Eval Injection') The product receives input from an up...'
+    "evaluated" <- CWE-95: '...ralization of Directives in Dynamically Evaluated Code ('Eval Injection') The product rec...'
+    "evaluated code" <- CWE-95: '...ralization of Directives in Dynamically Evaluated Code ('Eval Injection') The product receives...'
+    "exec" <- CWE-78: '...d injection: The application intends to execute a single, fixed program that is unde...'
+    "executing" <- CWE-78: '...Attackers cannot prevent nslookup from executing. However, if the program does not remov...'
+    "externally controlled" <- CodeQL py/command-line-injection: 'Query: Uncontrolled command line Using externally controlled strings in a command line may allow a m...'
+    "generation" <- CWE-94: 'CWE name: Improper Control of Generation of Code ('Code Injection') The product...'
+    "generation of" <- CWE-94: 'CWE name: Improper Control of Generation of Code ('Code Injection') The product con...'
+    "hostname" <- CWE-78: '...the program might use system("nslookup [HOSTNAME]") to run nslookup and allow the user t...'
+    "improper" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used...'
+    "improper control" <- CWE-94: 'CWE name: Improper Control of Generation of Code ('Code Injection'...'
+    "improper neutralization" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used in an OS Comma...'
+    "in dynamically" <- CWE-95: '...: Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval Injection') The p...'
+    "incorrectly neutralizes" <- CWE-78: '...omponent, but it does not neutralize or incorrectly neutralizes special elements that could modify the...'
+    "injection" <- CWE-78: '...ents used in an OS Command ('OS Command Injection') The product constructs all or part of...'
+    "injection interpreting" <- CodeQL py/code-injection: 'Query: Code injection Interpreting unsanitized user input as code allows a...'
+    "injection vulnerability" <- Semgrep javascript.lang.security.audit.child-process: '...trary arguments may end up in a command injection vulnerability. Try to avoid non-literal values for th...'
+    "injection_shell" <- Bandit B603: '...----- .. currentmodule:: bandit.plugins.injection_shell .. autofunction:: subprocess_without_sh...'
+    "input from" <- CWE-78: '...OS command using externally-influenced input from an upstream component, but it does not...'
+    "intends" <- CWE-78: '...f OS command injection: The application intends to execute a single, fixed program that...'
+    "intends to" <- CWE-78: '...f OS command injection: The application intends to execute a single, fixed program that is...'
+    "interpreting" <- CodeQL py/code-injection: 'Query: Code injection Interpreting unsanitized user input as code allows a...'
+    "interpreting unsanitized" <- CodeQL py/code-injection: 'Query: Code injection Interpreting unsanitized user input as code allows a malicious u...'
+    "line" <- CWE-78: '...multiple commands together in the same line. From a weakness standpoint, these vari...'
+    "line may" <- CodeQL py/command-line-injection: '...ernally controlled strings in a command line may allow a malicious user to change the me...'
+    "line using" <- CodeQL py/command-line-injection: 'Query: Uncontrolled command line Using externally controlled strings in a comm...'
+    "malicious user" <- CodeQL py/command-line-injection: '...d strings in a command line may allow a malicious user to change the meaning of the command.'
+    "meaning" <- CodeQL py/command-line-injection: '...ay allow a malicious user to change the meaning of the command.'
+    "meaning of" <- CodeQL py/command-line-injection: '...ay allow a malicious user to change the meaning of the command.'
+    "might use" <- CWE-78: '...that program. For example, the program might use system("nslookup [HOSTNAME]") to run ns...'
+    "neutralization" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used in an OS Comma...'
+    "neutralization of" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used in an OS Command...'
+    "neutralize or" <- CWE-78: '...an upstream component, but it does not neutralize or incorrectly neutralizes special element...'
+    "neutralizes" <- CWE-78: '...t it does not neutralize or incorrectly neutralizes special elements that could modify the...'
+    "noindex" <- Bandit B603: '...: subprocess_without_shell_equals_true :noindex:'
+    "not neutralize" <- CWE-78: '...from an upstream component, but it does not neutralize or incorrectly neutralizes special elem...'
+    "nslookup" <- CWE-78: '...example, the program might use system("nslookup [HOSTNAME]") to run nslookup and allow...'
+    "of code" <- CWE-94: '...WE name: Improper Control of Generation of Code ('Code Injection') The product construc...'
+    "of directives" <- CWE-95: 'CWE name: Improper Neutralization of Directives in Dynamically Evaluated Code ('Eval In...'
+    "of exec" <- Bandit B102: '...================ B102: Test for the use of exec ============================== This plu...'
+    "of generation" <- CWE-94: 'CWE name: Improper Control of Generation of Code ('Code Injection') The product...'
+    "of special" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used in an OS Command ('OS Com...'
+    "os command" <- CWE-78: '...lization of Special Elements used in an OS Command ('OS Command Injection') The product co...'
+    "part" <- CWE-78: '...jection') The product constructs all or part of an OS command using externally-influ...'
+    "part of" <- CWE-78: '...jection') The product constructs all or part of an OS command using externally-influenc...'
+    "peps" <- Bandit B102: '....html#exec - https://www.python.org/dev/peps/pep-0551/#background - https://www.pyth...'
+    "plugins" <- Bandit B603: '...------------- .. currentmodule:: bandit.plugins.injection_shell .. autofunction:: subpr...'
+    "privileges that" <- CWE-78: '...ble, or to call alternate commands with privileges that the attacker does not have. The problem...'
+    "program" <- CWE-78: '...if the weakness occurs in a privileged program, it could allow the attacker to specify...'
+    "program might" <- CWE-78: '...ments to that program. For example, the program might use system("nslookup [HOSTNAME]") to ru...'
+    "programmer" <- CWE-78: '...oint, these variants represent distinct programmer errors. In the first variant, the progr...'
+    "programs" <- CWE-78: '...acker can execute arbitrary commands or programs. If the command is being executed using...'
+    "running" <- Semgrep javascript.lang.security.audit.child-process: 'Allowing spawning arbitrary programs or running shell processes with arbitrary argument...'
+    "segment" <- CWE-94: '...roduct constructs all or part of a code segment using externally-influenced input from...'
+    "shell" <- Bandit B603: '...-------------- B603: subprocess_without_shell_equals_true ---------------------------...'
+    "special" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used in an OS Command ('OS Com...'
+    "special elements" <- CWE-78: 'CWE name: Improper Neutralization of Special Elements used in an OS Command ('OS Command Inje...'
+    "start_process_with_a_shell" <- Bandit B605: '-------------------------------- B605: start_process_with_a_shell -------------------------------- .. cur...'
+    "start_process_with_no_shell" <- Bandit B606: '--------------------------------- B606: start_process_with_no_shell --------------------------------- .. cu...'
+    "start_process_with_partial_path" <- Bandit B607: '...--------------------------------- B607: start_process_with_partial_path ------------------------------------- ....'
+    "strings in" <- CodeQL py/command-line-injection: '...ommand line Using externally controlled strings in a command line may allow a malicious us...'
+    "subprocess_without_shell_equals_true" <- Bandit B603: '...--------------------------------- B603: subprocess_without_shell_equals_true ---------------------------------------...'
+    "the arguments" <- CWE-78: '...tackers could place the separators into the arguments, which allows them to execute their own...'
+    "the command" <- CWE-78: '...MAND] that was supplied by the user. If the COMMAND is under attacker control, then the att...'
+    "the meaning" <- CodeQL py/command-line-injection: '...ne may allow a malicious user to change the meaning of the command.'
+    "the program" <- CWE-78: '...arguments to that program. For example, the program might use system("nslookup [HOSTNAME]")...'
+    "the programmer" <- CWE-78: '...rogrammer errors. In the first variant, the programmer clearly intends that input from untrust...'
+    "to change" <- CodeQL py/command-line-injection: '...command line may allow a malicious user to change the meaning of the command.'
+    "uncontrolled command" <- CodeQL py/command-line-injection: 'Query: Uncontrolled command line Using externally controlled string...'
+    "unsanitized" <- CodeQL py/code-injection: 'Query: Code injection Interpreting unsanitized user input as code allows a malicious u...'
+    "unsanitized user" <- CodeQL py/code-injection: 'Query: Code injection Interpreting unsanitized user input as code allows a malicious user t...'
+    "used" <- CWE-78: '...oper Neutralization of Special Elements used in an OS Command ('OS Command Injection...'
+    "used in" <- CWE-78: '...oper Neutralization of Special Elements used in an OS Command ('OS Command Injection')...'
+    "user to" <- CWE-78: '...STNAME]") to run nslookup and allow the user to supply a HOSTNAME, which is used as an...'
+    "using externally" <- CWE-78: '...constructs all or part of an OS command using externally-influenced input from an upstream compo...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: FILE_SYSTEM (Risk: High)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-022 - Improper Limitation of a Pathname to a Restricted Directory (Path Traversal)
+  CWE: CWE-073 - External Control of File Name or Path
+  CWE: CWE-377 - Insecure Temporary File
+  CWE: CWE-732 - Incorrect Permission Assignment for Critical Resource
+
+  PYTHON Operations:
+    APIs: open, io.open
+      Source: CodeQL py/path-injection
+      Source: Semgrep python.lang.security.audit.open-with-user-input
+    APIs: pathlib.Path.read_text, pathlib.Path.write_text, pathlib.Path.read_bytes, pathlib.Path.write_bytes, pathlib.Path.mkdir (+7 more)
+      Source: CodeQL py/path-injection
+    APIs: os.remove, os.unlink, os.rmdir, os.mkdir, os.makedirs (+9 more)
+      Source: CodeQL py/path-injection
+      Source: Bandit B103 (set_bad_file_permissions)
+    APIs: shutil.copy, shutil.copy2, shutil.copytree, shutil.move, shutil.rmtree (+1 more)
+      Source: CodeQL py/path-injection
+    APIs: tempfile.mktemp, tempfile.mkdtemp, tempfile.NamedTemporaryFile, tempfile.TemporaryDirectory
+      Source: Bandit B306 (mktemp_q)
+      Source: Bandit B108 (hardcoded_tmp_directory)
+
+  TYPESCRIPT Operations:
+    APIs: fs.readFile, fs.readFileSync, fs.writeFile, fs.writeFileSync, fs.appendFile (+23 more)
+      Source: CodeQL js/path-injection
+      Source: Semgrep javascript.lang.security.audit.path-traversal
+
+  JAVASCRIPT Operations:
+    APIs: fs.readFile, fs.readFileSync, fs.writeFile, fs.writeFileSync, fs.appendFile (+23 more)
+      Source: CodeQL js/path-injection
+      Source: Semgrep javascript.lang.security.audit.path-traversal
+
+  Derived Keywords (90):
+    "a file" <- CWE-22: '...a pathname that is intended to identify a file or directory that is located underneath...'
+    "a path" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory ('Path Tr...'
+    "a pathname" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory ('Path Traver...'
+    "a restricted" <- CWE-22: '...e: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') The produc...'
+    "absolute" <- CWE-22: '.... Path traversal also covers the use of absolute pathnames such as "/usr/local/bin" to a...'
+    "absolute path" <- CWE-22: '.... Path traversal also covers the use of absolute pathnames such as "/usr/local/bin" to access...'
+    "access files" <- CWE-22: '...e outside of the restricted location to access files or directories that are elsewhere on th...'
+    "access unexpected" <- CWE-22: '...e pathnames such as "/usr/local/bin" to access unexpected files. This is referred to as absolute...'
+    "allow an" <- CWE-73: '...ed in filesystem operations. This could allow an attacker to access or modify system fil...'
+    "assignment" <- CWE-732: 'CWE name: Incorrect Permission Assignment for Critical Resource The product speci...'
+    "assignment for" <- CWE-732: 'CWE name: Incorrect Permission Assignment for Critical Resource The product specifies...'
+    "can allow" <- CodeQL py/path-injection: '...ion Accessing paths influenced by users can allow an attacker to access unexpected resour...'
+    "chmod" <- Bandit B103: '..."execute" flags sets. Python provides ``chmod`` to manipulate POSIX style permissions...'
+    "constructed" <- CodeQL py/path-injection: '...resources. Accessing files using paths constructed from user-controlled data can allow an...'
+    "constructed from" <- CodeQL py/path-injection: '...resources. Accessing files using paths constructed from user-controlled data can allow an attac...'
+    "contained" <- CodeQL py/path-injection: '...sure that the constructed file path is contained within a safe root folder. First, norma...'
+    "contained within" <- CodeQL py/path-injection: '...sure that the constructed file path is contained within a safe root folder. First, normalize th...'
+    "control" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows...'
+    "control of" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows us...'
+    "could enter" <- CodeQL py/path-injection: '...ccess a file. However, a malicious user could enter a file name that is an absolute path, s...'
+    "critical" <- CWE-73: '...fy system files or other files that are critical to the application. Path manipulation e...'
+    "critical resource" <- CWE-732: '...me: Incorrect Permission Assignment for Critical Resource The product specifies permissions for a...'
+    "directory" <- CWE-22: '...imitation of a Pathname to a Restricted Directory ('Path Traversal') The product uses ext...'
+    "enter" <- CodeQL py/path-injection: '...a file. However, a malicious user could enter a file name that is an absolute path, s...'
+    "enter a" <- CodeQL py/path-injection: '...a file. However, a malicious user could enter a file name that is an absolute path, suc...'
+    "external" <- CWE-22: '...ory ('Path Traversal') The product uses external input to construct a pathname that is i...'
+    "external control" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows...'
+    "file" <- CWE-22: '...pathname that is intended to identify a file or directory that is located underneath...'
+    "file is" <- Bandit B103: '...ags. A MEDIUM warning is generated if a file is set to group write or executable and a...'
+    "file name" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows user input t...'
+    "file or" <- CWE-22: '...pathname that is intended to identify a file or directory that is located underneath a...'
+    "file path" <- CodeQL py/path-injection: '...gy is to make sure that the constructed file path is contained within a safe root folder....'
+    "file system" <- CodeQL py/path-injection: '...rd example, the path used to access the file system is normalized before being checked agai...'
+    "files" <- CWE-22: '...de of the restricted location to access files or directories that are elsewhere on th...'
+    "folder" <- CodeQL py/path-injection: '...u want to allow paths spanning multiple folders, a common strategy is to make sure tha...'
+    "for critical" <- CWE-732: '...E name: Incorrect Permission Assignment for Critical Resource The product specifies permissi...'
+    "improper" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricte...'
+    "improper limitation" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory...'
+    "incorrect" <- CWE-732: 'CWE name: Incorrect Permission Assignment for Critical Reso...'
+    "incorrect permission" <- CWE-732: 'CWE name: Incorrect Permission Assignment for Critical Resource The pr...'
+    "insecure" <- CWE-377: 'CWE name: Insecure Temporary File Creating and using insec...'
+    "insecure temporary" <- CWE-377: 'CWE name: Insecure Temporary File Creating and using insecure tempor...'
+    "insecure usage" <- Bandit B103: '..... code-block:: none >> Issue: Probable insecure usage of temp file/directory. Severity: Mediu...'
+    "is contained" <- CodeQL py/path-injection: '...ake sure that the constructed file path is contained within a safe root folder. First, norma...'
+    "limitation" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory...'
+    "limitation of" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory ('...'
+    "name" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a...'
+    "name or" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows user input to c...'
+    "normalize" <- CodeQL py/path-injection: '...ained within a safe root folder. First, normalize the path using os.path.normpath or os.p...'
+    "normalize the" <- CodeQL py/path-injection: '...ained within a safe root folder. First, normalize the path using os.path.normpath or os.path....'
+    "normalized" <- CodeQL py/path-injection: '...nd/or follow links. Then check that the normalized path starts with the root folder. Note...'
+    "npm" <- CodeQL py/path-injection: '...g path is safe. OWASP: Path Traversal . npm: werkzeug.utils.secure_filename .'
+    "of file" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows user in...'
+    "or path" <- CWE-73: 'CWE name: External Control of File Name or Path The product allows user input to contro...'
+    "passwd" <- CodeQL py/path-injection: '...that is an absolute path, such as "/etc/passwd" . In the second example, it appears th...'
+    "path" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory ('Path Tr...'
+    "path is" <- CodeQL py/path-injection: '...to make sure that the constructed file path is contained within a safe root folder. Fi...'
+    "path starts" <- CodeQL py/path-injection: '...w links. Then check that the normalized path starts with the root folder. Note that the nor...'
+    "path traversal" <- CWE-22: '...a Pathname to a Restricted Directory ('Path Traversal') The product uses external input to co...'
+    "pathname" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory ('Path Traver...'
+    "pathname to" <- CWE-22: 'CWE name: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal...'
+    "paths" <- CWE-73: '...lows user input to control or influence paths or file names that are used in filesyst...'
+    "paths constructed" <- CodeQL py/path-injection: '...pected resources. Accessing files using paths constructed from user-controlled data can allow an...'
+    "permission" <- CWE-732: 'CWE name: Incorrect Permission Assignment for Critical Resource The pr...'
+    "permission assignment" <- CWE-732: 'CWE name: Incorrect Permission Assignment for Critical Resource The product speci...'
+    "permissive" <- Bandit B103: '...================ B103: Test for setting permissive file permissions ======================...'
+    "resource" <- CWE-73: '...on the filesystem. 2. By specifying the resource, the attacker gains a capability that w...'
+    "restricted" <- CWE-22: '...Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') The produc...'
+    "restricted directory" <- CWE-22: '...Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') The product uses ext...'
+    "root" <- CodeQL py/path-injection: '...ed file path is contained within a safe root folder. First, normalize the path using...'
+    "root folder" <- CodeQL py/path-injection: '...ed file path is contained within a safe root folder. First, normalize the path using os.pat...'
+    "safe" <- CodeQL py/path-injection: '...tructed file path is contained within a safe root folder. First, normalize the path...'
+    "segments" <- CodeQL py/path-injection: '...sideration) to remove any internal ".." segments and/or follow links. Then check that th...'
+    "starts" <- CodeQL py/path-injection: '...ks. Then check that the normalized path starts with the root folder. Note that the nor...'
+    "starts with" <- CodeQL py/path-injection: '...ks. Then check that the normalized path starts with the root folder. Note that the normaliz...'
+    "temporary" <- CWE-377: 'CWE name: Insecure Temporary File Creating and using insecure tempor...'
+    "temporary file" <- CWE-377: 'CWE name: Insecure Temporary File Creating and using insecure temporary f...'
+    "the code" <- CodeQL py/path-injection: '...ng "../../../etc/passwd" will result in the code reading the file located at "/server/st...'
+    "the file" <- CWE-73: '...specify a path used in an operation on the filesystem. 2. By specifying the resource, t...'
+    "the path" <- CWE-22: '...erly neutralize special elements within the pathname that can cause the pathname to reso...'
+    "the root" <- CodeQL py/path-injection: '...ck that the normalized path starts with the root folder. Note that the normalization ste...'
+    "tmp" <- Bandit B103: '...hmod('/etc/hosts', 0o777) 15 os.chmod('/tmp/oh_hai', 0x1ff) 16 os.chmod('/etc/passw...'
+    "to access" <- CWE-22: '...cape outside of the restricted location to access files or directories that are elsewhere...'
+    "traversal" <- CWE-22: '...thname to a Restricted Directory ('Path Traversal') The product uses external input to co...'
+    "unexpected" <- CWE-22: '...ames such as "/usr/local/bin" to access unexpected files. This is referred to as absolute...'
+    "unexpected files" <- CWE-22: '...ames such as "/usr/local/bin" to access unexpected files. This is referred to as absolute path t...'
+    "unexpected resources" <- CodeQL py/path-injection: '...y users can allow an attacker to access unexpected resources. Accessing files using paths constructe...'
+    "user could" <- CodeQL py/path-injection: '...to access a file. However, a malicious user could enter a file name that is an absolute p...'
+    "write" <- CWE-73: '...ay give the attacker the ability to overwrite the specified file or run with a config...'
+    "write or" <- Bandit B103: '...is generated if a file is set to group write or executable and a HIGH warning is report...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: NETWORK (Risk: High)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-918 - Server-Side Request Forgery (SSRF)
+  CWE: CWE-295 - Improper Certificate Validation
+  CWE: CWE-319 - Cleartext Transmission of Sensitive Information
+  CWE: CWE-601 - URL Redirection to Untrusted Site (Open Redirect)
+
+  PYTHON Operations:
+    APIs: requests.get, requests.post, requests.put, requests.delete, requests.patch (+3 more)
+      Source: CodeQL py/request-forgery
+      Source: Bandit B309 (httpsconnection)
+      Source: Semgrep python.lang.security.audit.dynamic-urllib-use-detected
+    APIs: urllib.request.urlopen, urllib.request.urlretrieve, urllib.request.Request
+      Source: CodeQL py/request-forgery
+      Source: Bandit B310 (urllib_urlopen)
+      Source: Semgrep python.lang.security.audit.dynamic-urllib-use-detected
+    APIs: http.client.HTTPConnection, http.client.HTTPSConnection
+      Source: Bandit B309 (httpsconnection)
+    APIs: httpx.get, httpx.post, httpx.put, httpx.delete, httpx.Client (+1 more)
+      Source: CodeQL py/request-forgery
+    APIs: aiohttp.ClientSession, aiohttp.request
+      Source: CodeQL py/request-forgery
+    APIs: socket.socket, socket.create_connection
+      Source: Bandit B104 (hardcoded_bind_all_interfaces)
+      Source: CodeQL py/bind-socket-all-network-interfaces
+    APIs: ftplib.FTP, ftplib.FTP_TLS
+      Source: Bandit B321 (ftp)
+      Source: Bandit B402 (import_ftplib)
+    APIs: xmlrpc.client.ServerProxy
+      Source: Bandit B411 (import_xmlrpc)
+
+  TYPESCRIPT Operations:
+    APIs: fetch
+      Source: CodeQL js/request-forgery
+    APIs: axios.get, axios.post, axios.put, axios.delete, axios.patch (+2 more)
+      Source: CodeQL js/request-forgery
+    APIs: http.request, http.get, https.request, https.get, http.createServer (+1 more)
+      Source: CodeQL js/request-forgery
+    APIs: XMLHttpRequest
+      Source: CodeQL js/request-forgery
+    APIs: net.createConnection, net.connect, net.Socket
+      Source: CodeQL js/request-forgery
+
+  JAVASCRIPT Operations:
+    APIs: fetch
+      Source: CodeQL js/request-forgery
+    APIs: axios.get, axios.post, axios.put, axios.delete, axios.patch (+2 more)
+      Source: CodeQL js/request-forgery
+    APIs: http.request, http.get, https.request, https.get, http.createServer (+1 more)
+      Source: CodeQL js/request-forgery
+    APIs: XMLHttpRequest
+      Source: CodeQL js/request-forgery
+    APIs: net.createConnection, net.connect, net.Socket
+      Source: CodeQL js/request-forgery
+
+  Derived Keywords (94):
+    "a network" <- CodeQL py/bind-socket-all-network-interfaces: '...d to communicate with other machines on a network. You can use the (IP address, port) pai...'
+    "a request" <- CodeQL js/request-forgery: '...of an outgoing HTTP request can enable a request forgery attack, in which the request is...'
+    "a socket" <- CodeQL py/bind-socket-all-network-interfaces: 'Query: Binding a socket to all network interfaces Binding a soc...'
+    "address" <- CodeQL py/bind-socket-all-network-interfaces: '...es opens it up to traffic from any IPv4 address and is therefore associated with securi...'
+    "all interfaces" <- Bandit B104: '...============= B104: Test for binding to all interfaces =======================================...'
+    "all network" <- Bandit B104: '...============================ Binding to all network interfaces can potentially open up a se...'
+    "an unintended" <- CodeQL js/request-forgery: '...which the request is altered to target an unintended API endpoint or resource. If the server...'
+    "any ipv4" <- CodeQL py/bind-socket-all-network-interfaces: '...interfaces opens it up to traffic from any IPv4 address and is therefore associated wit...'
+    "bind" <- Bandit B104: '...======================== B104: Test for binding to all interfaces ==================...'
+    "bind the" <- CodeQL py/bind-socket-all-network-interfaces: '...TP server data transmitter), one has to bind the port to some interface. When you bind t...'
+    "binding" <- Bandit B104: '...======================== B104: Test for binding to all interfaces =====================...'
+    "binding a" <- CodeQL py/bind-socket-all-network-interfaces: 'Query: Binding a socket to all network interfaces Bindin...'
+    "binding to" <- Bandit B104: '...======================== B104: Test for binding to all interfaces ========================...'
+    "can choose" <- CodeQL js/request-forgery: '....get(...) is vulnerable since attackers can choose the value of target to be anything they...'
+    "certificate" <- CWE-295: 'CWE name: Improper Certificate Validation The product does not validat...'
+    "certificate validation" <- CWE-295: 'CWE name: Improper Certificate Validation The product does not validate, or incor...'
+    "cleartext" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information T...'
+    "cleartext transmission" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information The product tr...'
+    "com" <- CWE-918: '...URL or similar request from an upstream component and retrieves the contents of thi...'
+    "cve-2018-1281" <- Bandit B104: '...so:: - https://nvd.nist.gov/vuln/detail/CVE-2018-1281 - https://cwe.mitre.org/data/definition...'
+    "detail" <- Bandit B104: '.... seealso:: - https://nvd.nist.gov/vuln/detail/CVE-2018-1281 - https://cwe.mitre.org/d...'
+    "directly" <- CodeQL js/request-forgery: '...URL allows for request forgery attacks. Directly incorporating user input in the URL of...'
+    "dynamic value" <- Semgrep python.lang.security.audit.dynamic-urllib-use-detected: 'Detected a dynamic value being used with urllib. urllib supports...'
+    "for instance" <- CodeQL py/bind-socket-all-network-interfaces: '...sing the built-in Python socket module (for instance, when building a message sender service...'
+    "forgery" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web server receives a URL or...'
+    "improper" <- CWE-295: 'CWE name: Improper Certificate Validation The product does...'
+    "improper certificate" <- CWE-295: 'CWE name: Improper Certificate Validation The product does not validat...'
+    "information" <- CWE-319: '...me: Cleartext Transmission of Sensitive Information The product transmits sensitive or secu...'
+    "interface" <- Bandit B104: '...========= B104: Test for binding to all interfaces ======================================...'
+    "interfaces" <- Bandit B104: '...========= B104: Test for binding to all interfaces =======================================...'
+    "interfaces binding" <- CodeQL py/bind-socket-all-network-interfaces: 'Query: Binding a socket to all network interfaces Binding a socket to all interfaces opens it up...'
+    "ip address" <- CodeQL py/bind-socket-all-network-interfaces: '...machines on a network. You can use the (IP address, port) pair to define the access restri...'
+    "ipv4" <- CodeQL py/bind-socket-all-network-interfaces: '...erfaces opens it up to traffic from any IPv4 address and is therefore associated wit...'
+    "ipv4 address" <- CodeQL py/bind-socket-all-network-interfaces: '...erfaces opens it up to traffic from any IPv4 address and is therefore associated with securi...'
+    "link" <- CWE-601: '...user-controlled input that specifies a link to an external site, and uses that link...'
+    "network" <- Bandit B104: '...======================== Binding to all network interfaces can potentially open up a se...'
+    "network interfaces" <- Bandit B104: '...======================== Binding to all network interfaces can potentially open up a service to tr...'
+    "of sensitive" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information The product transmits sensi...'
+    "one through" <- CodeQL py/bind-socket-all-network-interfaces: '...cause they are bound to all interfaces; one through the 0.0.0.0 notation and another one th...'
+    "open" <- CWE-601: '...me: URL Redirection to Untrusted Site ('Open Redirect') The web application accepts...'
+    "open redirect" <- CWE-601: '...me: URL Redirection to Untrusted Site ('Open Redirect') The web application accepts a user-co...'
+    "performing" <- CodeQL js/request-forgery: '...API endpoint or resource. If the server performing the request is connected to an internal...'
+    "performing the" <- CodeQL js/request-forgery: '...API endpoint or resource. If the server performing the request is connected to an internal net...'
+    "port" <- Semgrep python.lang.security.audit.dynamic-urllib-use-detected: '...value being used with urllib. urllib supports 'file://' schemes, so a dynamic value...'
+    "port to" <- CodeQL py/bind-socket-all-network-interfaces: '...data transmitter), one has to bind the port to some interface. When you bind the port...'
+    "python reference" <- CodeQL py/bind-socket-all-network-interfaces: '...nother one through an empty string '' . Python reference: Socket families . Python reference: So...'
+    "redirect" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect')...'
+    "redirection" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The...'
+    "redirection to" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The we...'
+    "request" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web server receives...'
+    "request forgery" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web server receives a URL or...'
+    "request is" <- CWE-918: '...t does not sufficiently ensure that the request is being sent to the expected destination.'
+    "request response" <- CodeQL js/request-forgery: '...irected to an external server or if the request response is fed back to the user. It may also co...'
+    "request to" <- CodeQL js/request-forgery: '...the target, causing the URL used in the request to be "https://internal.example.com/#.exam...'
+    "requests" <- Semgrep python.lang.security.audit.dynamic-urllib-use-detected: '...ontrol the URLs, or consider using the 'requests' library instead.'
+    "response" <- CodeQL js/request-forgery: '...to an external server or if the request response is fed back to the user. It may also co...'
+    "response is" <- CodeQL js/request-forgery: '...to an external server or if the request response is fed back to the user. It may also compr...'
+    "s bind" <- CodeQL py/bind-socket-all-network-interfaces: '...inding a socket to all network interfaces Binding a socket to all interfaces opens it...'
+    "security risks" <- CodeQL py/bind-socket-all-network-interfaces: '...ddress and is therefore associated with security risks. Sockets can be used to communicate wit...'
+    "sensitive" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information The product transmits sensi...'
+    "sensitive information" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information The product transmits sensitive or secu...'
+    "server" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web ser...'
+    "server-side" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web server r...'
+    "server-side request" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web server receives...'
+    "site" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The web application a...'
+    "socket" <- Bandit B104: '...Location: ./examples/binding.py:4 3 s = socket.socket(socket.AF_INET, socket.SOCK_STRE...'
+    "socket module" <- CodeQL py/bind-socket-all-network-interfaces: '...create. When using the built-in Python socket module (for instance, when building a message...'
+    "socket to" <- CodeQL py/bind-socket-all-network-interfaces: 'Query: Binding a socket to all network interfaces Binding a socket...'
+    "sockets" <- CodeQL py/bind-socket-all-network-interfaces: '...erefore associated with security risks. Sockets can be used to communicate with other m...'
+    "ssrf" <- CWE-918: 'CWE name: Server-Side Request Forgery (SSRF) The web server receives a URL or simil...'
+    "target" <- CodeQL js/request-forgery: '...ack, in which the request is altered to target an unintended API endpoint or resource....'
+    "the built-in" <- CodeQL py/bind-socket-all-network-interfaces: '...s for the socket you create. When using the built-in Python socket module (for instance, whe...'
+    "the ip" <- CodeQL py/bind-socket-all-network-interfaces: '...port to all interfaces using 0.0.0.0 as the IP address, you essentially allow it to ac...'
+    "the port" <- CodeQL py/bind-socket-all-network-interfaces: '...rver data transmitter), one has to bind the port to some interface. When you bind the po...'
+    "the request" <- CWE-918: '...ut it does not sufficiently ensure that the request is being sent to the expected destinati...'
+    "the socket" <- CodeQL py/bind-socket-all-network-interfaces: '...r to define the access restrictions for the socket you create. When using the built-in Pyt...'
+    "the url" <- Semgrep python.lang.security.audit.dynamic-urllib-use-detected: '...alls to ensure user data cannot control the URLs, or consider using the 'requests' libr...'
+    "the web" <- CWE-918: '...ame: Server-Side Request Forgery (SSRF) The web server receives a URL or similar reques...'
+    "therefore associated" <- CodeQL py/bind-socket-all-network-interfaces: '...to traffic from any IPv4 address and is therefore associated with security risks. Sockets can be use...'
+    "to bind" <- CodeQL py/bind-socket-all-network-interfaces: '...n FTP server data transmitter), one has to bind the port to some interface. When you bi...'
+    "to traffic" <- Bandit B104: '...faces can potentially open up a service to traffic on unintended interfaces, that may not...'
+    "to untrusted" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The web applicat...'
+    "traffic" <- Bandit B104: '...es can potentially open up a service to traffic on unintended interfaces, that may not...'
+    "transmission" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information The product tr...'
+    "transmission of" <- CWE-319: 'CWE name: Cleartext Transmission of Sensitive Information The product trans...'
+    "unintended" <- Bandit B104: '...ntially open up a service to traffic on unintended interfaces, that may not be properly do...'
+    "untrusted" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The web applicat...'
+    "untrusted site" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The web application a...'
+    "url" <- CWE-918: '...orgery (SSRF) The web server receives a URL or similar request from an upstream com...'
+    "url of" <- CodeQL js/request-forgery: '...irectly incorporating user input in the URL of an outgoing HTTP request can enable a r...'
+    "url redirection" <- CWE-601: 'CWE name: URL Redirection to Untrusted Site ('Open Redirect') The...'
+    "urllib" <- Semgrep python.lang.security.audit.dynamic-urllib-use-detected: '...etected a dynamic value being used with urllib. urllib supports 'file://' schemes, so...'
+    "validation" <- CWE-295: 'CWE name: Improper Certificate Validation The product does not validate, or incor...'
+    "with security" <- CodeQL py/bind-socket-all-network-interfaces: '...Pv4 address and is therefore associated with security risks. Sockets can be used to communica...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: DATABASE (Risk: High)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-089 - Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)
+  CWE: CWE-943 - Improper Neutralization of Special Elements in Data Query Logic
+
+  PYTHON Operations:
+    APIs: sqlite3.connect, cursor.execute, cursor.executemany, cursor.executescript
+      Source: CodeQL py/sql-injection
+      Source: Bandit B608 (hardcoded_sql_expressions)
+    APIs: psycopg2.connect, psycopg.connect
+      Source: CodeQL py/sql-injection
+      Source: Bandit B608 (hardcoded_sql_expressions)
+    APIs: pymysql.connect, MySQLdb.connect, mysql.connector.connect
+      Source: CodeQL py/sql-injection
+    APIs: sqlalchemy.create_engine, sqlalchemy.text, session.execute, engine.execute
+      Source: CodeQL py/sql-injection
+      Source: Semgrep python.sqlalchemy.security.sqlalchemy-execute-raw-query
+    APIs: pymongo.MongoClient, collection.find, collection.insert_one, collection.update_one, collection.delete_one (+1 more)
+      Source: CodeQL py/nosql-injection
+      Source: Semgrep python.pymongo.security.nosql-injection
+    APIs: redis.Redis, redis.StrictRedis, redis.from_url
+      Source: Semgrep python.redis.security.injection
+
+  TYPESCRIPT Operations:
+    APIs: pg.Client, pg.Pool, client.query, pool.query
+      Source: CodeQL js/sql-injection
+    APIs: mysql.createConnection, mysql.createPool, connection.query, connection.execute
+      Source: CodeQL js/sql-injection
+    APIs: mongoose.connect, mongoose.model, Model.find, Model.findOne, Model.create (+2 more)
+      Source: CodeQL js/nosql-injection
+      Source: Semgrep javascript.mongoose.security.nosql-injection
+    APIs: sequelize.query, knex.raw, prisma
+      Source: CodeQL js/sql-injection
+      Source: Semgrep javascript.sequelize.security.audit
+    APIs: redis.createClient, ioredis
+      Source: Semgrep javascript.redis.security.injection
+
+  JAVASCRIPT Operations:
+    APIs: pg.Client, pg.Pool, client.query, pool.query
+      Source: CodeQL js/sql-injection
+    APIs: mysql.createConnection, mysql.createPool, connection.query, connection.execute
+      Source: CodeQL js/sql-injection
+    APIs: mongoose.connect, mongoose.model, Model.find, Model.findOne, Model.create (+2 more)
+      Source: CodeQL js/nosql-injection
+      Source: Semgrep javascript.mongoose.security.nosql-injection
+    APIs: sequelize.query, knex.raw, prisma
+      Source: CodeQL js/sql-injection
+      Source: Semgrep javascript.sequelize.security.audit
+    APIs: redis.createClient, ioredis
+      Source: Semgrep javascript.redis.security.injection
+
+  Derived Keywords (75):
+    "a nosql" <- CodeQL py/nosql-injection: 'Query: NoSQL Injection Building a NoSQL query from user-controlled sources is v...'
+    "additional" <- CWE-943: '...uery language, an attacker could inject additional logic into the query to: Modify the int...'
+    "an sql" <- CWE-89: '...tralization of Special Elements used in an SQL Command ('SQL Injection') The product c...'
+    "are returned" <- CWE-943: '...ing which data entities (e.g., records) are returned, modified, or otherwise manipulated App...'
+    "building" <- CodeQL py/sql-injection: '...uery built from user-controlled sources Building a SQL query from user-controlled source...'
+    "building a" <- CodeQL py/sql-injection: '...uery built from user-controlled sources Building a SQL query from user-controlled sources...'
+    "code by" <- CodeQL py/sql-injection: '...ulnerable to insertion of malicious SQL code by the user.'
+    "command" <- CWE-89: '...tion of Special Elements used in an SQL Command ('SQL Injection') The product construct...'
+    "complex" <- Semgrep python.sqlalchemy.security.sqlalchemy-execute-raw-query: '...ed statement with named parameters. For complex SQL composition, use SQL Expression Lan...'
+    "construction" <- Bandit B608: '...% var) Use of str.replace in the string construction can also be dangerous. For example: - "...'
+    "data" <- CWE-89: '...rpreted as SQL instead of ordinary user data.'
+    "data query" <- CWE-943: '...r Neutralization of Special Elements in Data Query Logic The product generates a query int...'
+    "database" <- CWE-943: '...nipulate data in a data store such as a database, but it does not neutralize or incorrec...'
+    "derp" <- Bandit B608: '...eration. For example: - "SELECT %s FROM derp;" % var - "SELECT thing FROM " + tab -...'
+    "documentation" <- CodeQL py/nosql-injection: '...otated code version below. Mongoengine: Documentation . Flask-Mongoengine: Documentation . Py...'
+    "elements" <- CWE-89: '...ame: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'...'
+    "elements in" <- CWE-943: '...ame: Improper Neutralization of Special Elements in Data Query Logic The product generates...'
+    "elements used" <- CWE-89: '...ame: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') The...'
+    "entities" <- CWE-943: '...tion criteria, thus changing which data entities (e.g., records) are returned, modified,...'
+    "foo" <- Bandit B608: '...T {} FROM derp;".format(var) - f"SELECT foo FROM bar WHERE id = {product}" Unless c...'
+    "from derp" <- Bandit B608: '...ng operation. For example: - "SELECT %s FROM derp;" % var - "SELECT thing FROM " + tab -...'
+    "from user-controlled" <- CodeQL py/sql-injection: 'Query: SQL query built from user-controlled sources Building a SQL query from user-...'
+    "identifier" <- Bandit B608: '...HERE id = '[VALUE]'".replace("[VALUE]", identifier) However, such cases are always reporte...'
+    "improper" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used...'
+    "improper neutralization" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used in an SQL Comm...'
+    "in data" <- CWE-943: '...oper Neutralization of Special Elements in Data Query Logic The product generates a que...'
+    "in order" <- Bandit B608: '...ed, a LOW confidence issue is reported. In order to boost result confidence, this plugin...'
+    "inject" <- CWE-89: '...l Elements used in an SQL Command ('SQL Injection') The product constructs all or part...'
+    "injection" <- CWE-89: '...l Elements used in an SQL Command ('SQL Injection') The product constructs all or part of...'
+    "insertion" <- CodeQL py/sql-injection: '...ser-controlled sources is vulnerable to insertion of malicious SQL code by the user.'
+    "insertion of" <- CodeQL py/sql-injection: '...ser-controlled sources is vulnerable to insertion of malicious SQL code by the user.'
+    "language" <- CWE-943: '...ending on the capabilities of the query language, an attacker could inject additional lo...'
+    "logic" <- CWE-943: '...ation of Special Elements in Data Query Logic The product generates a query intended...'
+    "modify the" <- CWE-89: '...neutralizes special elements that could modify the intended SQL command when it is sent to...'
+    "mongodb" <- CodeQL py/nosql-injection: '...cious query in a NoSQL database such as MongoDB. In order for the user-controlled sourc...'
+    "nan" <- Semgrep python.redis.security.injection: '...tacker to inject Python's not-a-number (NaN) into the typecast. This results in und...'
+    "neutralization" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used in an SQL Comm...'
+    "neutralization of" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used in an SQL Command...'
+    "nosql" <- CWE-943: '...g HTSQL, LDAP, DQL, XQuery, Xpath, and "NoSQL" languages.'
+    "nosql injection" <- CodeQL py/nosql-injection: 'Query: NoSQL Injection Building a NoSQL query from user-contro...'
+    "nosql query" <- CodeQL py/nosql-injection: 'Query: NoSQL Injection Building a NoSQL query from user-controlled sources is vulnera...'
+    "of malicious" <- CodeQL py/sql-injection: '...lled sources is vulnerable to insertion of malicious SQL code by the user.'
+    "of special" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used in an SQL Command ('SQL I...'
+    "order" <- CWE-943: '...t when the product logic depends on the order or number of entities, this can also le...'
+    "query" <- CWE-89: '...-controllable inputs, the generated SQL query can cause those inputs to be interprete...'
+    "query from" <- CodeQL py/sql-injection: '...user-controlled sources Building a SQL query from user-controlled sources is vulnerable t...'
+    "query logic" <- CWE-943: '...tralization of Special Elements in Data Query Logic The product generates a query intended...'
+    "replace" <- Bandit B608: '...SELECT %s FROM derp;" % var) Use of str.replace in the string construction can also be...'
+    "reported" <- Bandit B608: '...e discovered, a LOW confidence issue is reported. In order to boost result confidence, t...'
+    "return" <- CWE-943: '...which data entities (e.g., records) are returned, modified, or otherwise manipulated A...'
+    "returned" <- CWE-943: '...which data entities (e.g., records) are returned, modified, or otherwise manipulated App...'
+    "select" <- CWE-943: '...into the query to: Modify the intended selection criteria, thus changing which data e...'
+    "sources" <- CodeQL py/sql-injection: '...y: SQL query built from user-controlled sources Building a SQL query from user-controll...'
+    "sources is" <- CodeQL py/sql-injection: '...ilding a SQL query from user-controlled sources is vulnerable to insertion of malicious SQ...'
+    "special" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used in an SQL Command ('SQL I...'
+    "special elements" <- CWE-89: 'CWE name: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'...'
+    "sql" <- CWE-89: '...lization of Special Elements used in an SQL Command ('SQL Injection') The product c...'
+    "sql command" <- CWE-89: '...lization of Special Elements used in an SQL Command ('SQL Injection') The product construct...'
+    "sql injection" <- CWE-89: '...ecial Elements used in an SQL Command ('SQL Injection') The product constructs all or part of...'
+    "sql query" <- CWE-89: '...user-controllable inputs, the generated SQL query can cause those inputs to be interprete...'
+    "statement" <- Bandit B608: '...est looks for strings that resemble SQL statements that are involved in some form of stri...'
+    "str" <- CWE-89: '...ommand ('SQL Injection') The product constructs all or part of an SQL command using...'
+    "the nosql" <- CodeQL py/nosql-injection: '...for the user-controlled source to taint the NoSQL query, the user-controller source must...'
+    "the query" <- CWE-943: '...s that can modify the intended logic of the query. Depending on the capabilities of the q...'
+    "the string" <- Bandit B608: '...ROM derp;" % var) Use of str.replace in the string construction can also be dangerous. For...'
+    "to insertion" <- CodeQL py/sql-injection: '...m user-controlled sources is vulnerable to insertion of malicious SQL code by the user.'
+    "typecast" <- Semgrep python.redis.security.injection: 'Found user input going directly into typecast for bool(), float(), or complex(). This...'
+    "used" <- CWE-89: '...oper Neutralization of Special Elements used in an SQL Command ('SQL Injection') The...'
+    "used in" <- CWE-89: '...oper Neutralization of Special Elements used in an SQL Command ('SQL Injection') The pr...'
+    "user-controlled" <- CodeQL py/sql-injection: 'Query: SQL query built from user-controlled sources Building a SQL query from user-...'
+    "user-controlled source" <- CodeQL py/sql-injection: 'Query: SQL query built from user-controlled sources Building a SQL query from user-control...'
+    "user-controlled sources" <- CodeQL py/sql-injection: 'Query: SQL query built from user-controlled sources Building a SQL query from user-controll...'
+    "user-supplied" <- CodeQL py/nosql-injection: '...re passed into the NoSQL query from the user-supplied source. Alternatively, using a sanitize...'
+    "var" <- Bandit B608: '...For example: - "SELECT %s FROM derp;" % var - "SELECT thing FROM " + tab - "SELECT...'
+    "where id" <- Bandit B608: '...p;".format(var) - f"SELECT foo FROM bar WHERE id = {product}" Unless care is taken to sa...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: INFO_EXPOSURE (Risk: Medium)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-200 - Exposure of Sensitive Information to an Unauthorized Actor
+  CWE: CWE-209 - Generation of Error Message Containing Sensitive Information
+  CWE: CWE-215 - Insertion of Sensitive Information Into Debugging Code
+  CWE: CWE-312 - Cleartext Storage of Sensitive Information
+  CWE: CWE-532 - Insertion of Sensitive Information into Log File
+  CWE: CWE-798 - Use of Hard-coded Credentials
+
+  PYTHON Operations:
+    APIs: os.environ, os.getenv, os.environ.get
+      Source: CodeQL py/clear-text-logging-sensitive-data
+      Source: Semgrep python.lang.security.audit.dangerous-os-exec-detected
+    APIs: dotenv.load_dotenv, dotenv_values
+      Source: Semgrep python.lang.security.audit.env-access
+    APIs: logging.debug, logging.info, logging.warning, logging.error, logging.critical (+5 more)
+      Source: CodeQL py/clear-text-logging-sensitive-data
+      Source: Bandit B110 (try_except_pass)
+    APIs: hardcoded_password, hardcoded_secret
+      Source: Bandit B105 (hardcoded_password_string)
+      Source: Bandit B106 (hardcoded_password_funcarg)
+      Source: Bandit B107 (hardcoded_password_default)
+      Source: CodeQL py/hardcoded-credentials
+
+  TYPESCRIPT Operations:
+    APIs: process.env
+      Source: CodeQL js/clear-text-logging
+      Source: Semgrep javascript.lang.security.audit.environment-access
+    APIs: dotenv.config
+      Source: Semgrep javascript.lang.security.audit.environment-access
+    APIs: console.log, console.error, console.warn, console.debug, console.info
+      Source: CodeQL js/clear-text-logging
+    APIs: hardcoded_credentials
+      Source: CodeQL js/hardcoded-credentials
+      Source: Semgrep javascript.lang.security.audit.hardcoded-credentials
+
+  JAVASCRIPT Operations:
+    APIs: process.env
+      Source: CodeQL js/clear-text-logging
+      Source: Semgrep javascript.lang.security.audit.environment-access
+    APIs: dotenv.config
+      Source: Semgrep javascript.lang.security.audit.environment-access
+    APIs: console.log, console.error, console.warn, console.debug, console.info
+      Source: CodeQL js/clear-text-logging
+    APIs: hardcoded_credentials
+      Source: CodeQL js/hardcoded-credentials
+      Source: Semgrep javascript.lang.security.audit.hardcoded-credentials
+
+  Derived Keywords (83):
+    "a placeholder" <- CodeQL py/hardcoded-credentials: '...stricted access. If the credentials are a placeholder value, make sure the value is obviously...'
+    "actor" <- CWE-200: '...ensitive Information to an Unauthorized Actor The product exposes sensitive informati...'
+    "an unauthorized" <- CWE-200: '...e: Exposure of Sensitive Information to an Unauthorized Actor The product exposes sensitive inf...'
+    "and password" <- CodeQL py/clear-text-logging-sensitive-data: '...em information, and sometimes usernames and passwords. Sensitive data should not be logged....'
+    "be set" <- CodeQL py/hardcoded-credentials: '...ables username and password , which can be set externally without hard-coding credenti...'
+    "be supplied" <- CodeQL py/hardcoded-credentials: '...er: Instead, user name and password can be supplied through the environment variables usern...'
+    "cleartext" <- CWE-312: 'CWE name: Cleartext Storage of Sensitive Information The pr...'
+    "cleartext storage" <- CWE-312: 'CWE name: Cleartext Storage of Sensitive Information The product st...'
+    "code" <- CWE-200: '...tus and configuration the product's own code or internal state metadata, e.g. loggin...'
+    "code example" <- CodeQL py/hardcoded-credentials: '...eToken" or "MyPassword" . The following code example connects to an HTTP request using an ha...'
+    "code is" <- CWE-215: '...xpose this information if the debugging code is not disabled in production. When debugg...'
+    "configuration" <- CWE-200: '...ntellectual property network status and configuration the product's own code or internal stat...'
+    "configuration files" <- CodeQL py/hardcoded-credentials: '...rom source code. Instead, place them in configuration files, environment variables or other data st...'
+    "connects" <- CWE-798: '...trator to detect. Outbound: the product connects to another system or component, and it...'
+    "connects to" <- CWE-798: '...trator to detect. Outbound: the product connects to another system or component, and it con...'
+    "containing" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive Information The product gener...'
+    "containing sensitive" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive Information The product generates an er...'
+    "credentials" <- CWE-798: 'CWE name: Use of Hard-coded Credentials The product contains hard-coded credent...'
+    "credentials in" <- CWE-798: '...mer may simply hard-code those back-end credentials into the front-end product.'
+    "debugging" <- CWE-215: '...Insertion of Sensitive Information Into Debugging Code The product inserts sensitive info...'
+    "debugging code" <- CWE-215: '...Insertion of Sensitive Information Into Debugging Code The product inserts sensitive informati...'
+    "environment" <- CWE-200: '...n, or contact details system status and environment, such as the operating system and insta...'
+    "environment variables" <- CodeQL py/hardcoded-credentials: '...ead, place them in configuration files, environment variables or other data stores if necessary. If p...'
+    "error" <- CWE-200: '...ormation exposures. The severity of the error can range widely, depending on the cont...'
+    "error message" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive Information The pr...'
+    "example connects" <- CodeQL py/hardcoded-credentials: '...n" or "MyPassword" . The following code example connects to an HTTP request using an hard-codes...'
+    "except" <- Bandit B110: '...========== B110: Test for a pass in the except block =================================...'
+    "exception" <- Bandit B110: '...ases are typically communicated using ``Exceptions``. An exception object is 'raised' in...'
+    "exposure" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthor...'
+    "exposure of" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthorize...'
+    "externally without" <- CodeQL py/hardcoded-credentials: '...sername and password , which can be set externally without hard-coding credentials in the source c...'
+    "file" <- CWE-200: '...different weaknesses, such as insecure file permissions or out-of-bounds read. CWE-...'
+    "generation" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive I...'
+    "generation of" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive Info...'
+    "hard-coded" <- CWE-798: 'CWE name: Use of Hard-coded Credentials The product contains hard-c...'
+    "hard-coded credentials" <- CWE-798: 'CWE name: Use of Hard-coded Credentials The product contains hard-coded credent...'
+    "hard-codes" <- CodeQL py/hardcoded-credentials: '...le connects to an HTTP request using an hard-codes authentication header: Instead, user na...'
+    "hard-coding" <- CodeQL py/hardcoded-credentials: '...d , which can be set externally without hard-coding credentials in the source code. The fol...'
+    "hard-coding credentials" <- CodeQL py/hardcoded-credentials: '...d , which can be set externally without hard-coding credentials in the source code. The following code...'
+    "information" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthorized Actor The product ex...'
+    "information into" <- CWE-200: '...: the code explicitly inserts sensitive information into resources or messages that are intentio...'
+    "information such" <- CodeQL py/clear-text-logging-sensitive-data: '...dditionally that data may expose system information such as full path names, system information,...'
+    "information to" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthorized Actor The product expos...'
+    "insertion" <- CWE-215: 'CWE name: Insertion of Sensitive Information Into Debugging...'
+    "insertion of" <- CWE-215: 'CWE name: Insertion of Sensitive Information Into Debugging Co...'
+    "into debugging" <- CWE-215: '...ame: Insertion of Sensitive Information Into Debugging Code The product inserts sensitive info...'
+    "into log" <- CWE-532: '...ame: Insertion of Sensitive Information into Log File The product writes sensitive infor...'
+    "is logged" <- CodeQL py/clear-text-logging-sensitive-data: '...example the entire process environment is logged using `console.info`. Regular users of...'
+    "log" <- CWE-200: '...n code or internal state metadata, e.g. logging of connections or message headers i...'
+    "log file" <- CWE-532: '...Insertion of Sensitive Information into Log File The product writes sensitive informatio...'
+    "logged" <- CodeQL py/clear-text-logging-sensitive-data: '...passwords. Sensitive data should not be logged. In the example the entire process envi...'
+    "logging" <- CWE-200: '...n code or internal state metadata, e.g. logging of connections or message headers indir...'
+    "message" <- CWE-200: '...personal information, such as personal messages, financial data, health records, geogr...'
+    "message containing" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive Information The product gener...'
+    "name and" <- CodeQL py/hardcoded-credentials: '...es authentication header: Instead, user name and password can be supplied through the en...'
+    "of error" <- CWE-209: 'CWE name: Generation of Error Message Containing Sensitive Informatio...'
+    "of hard-coded" <- CWE-798: 'CWE name: Use of Hard-coded Credentials The product contains hard-c...'
+    "of sensitive" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthorized Actor Th...'
+    "pass" <- CWE-798: '...tains hard-coded credentials, such as a password or cryptographic key. There are two...'
+    "password" <- CWE-798: '...tains hard-coded credentials, such as a password or cryptographic key. There are two mai...'
+    "password can" <- CodeQL py/hardcoded-credentials: '...tication header: Instead, user name and password can be supplied through the environment var...'
+    "placeholder" <- CodeQL py/hardcoded-credentials: '...ricted access. If the credentials are a placeholder value, make sure the value is obviously...'
+    "production" <- CWE-215: '...f the debugging code is not disabled in production. When debugging, it may be necessary to...'
+    "sensitive" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthorized Actor Th...'
+    "sensitive information" <- CWE-200: 'CWE name: Exposure of Sensitive Information to an Unauthorized Actor The product ex...'
+    "set externally" <- CodeQL py/hardcoded-credentials: '...es username and password , which can be set externally without hard-coding credentials in the...'
+    "source" <- CWE-200: '...ly inserts sensitive information into resources or messages that are intentionally mad...'
+    "source code" <- CodeQL py/hardcoded-credentials: '...tials Credentials are hard coded in the source code of the application. Including unencrypt...'
+    "storage" <- CWE-312: 'CWE name: Cleartext Storage of Sensitive Information The product st...'
+    "storage of" <- CWE-312: 'CWE name: Cleartext Storage of Sensitive Information The product store...'
+    "supplied through" <- CodeQL py/hardcoded-credentials: '...Instead, user name and password can be supplied through the environment variables username and...'
+    "system information" <- CodeQL py/clear-text-logging-sensitive-data: '...ayed. Additionally that data may expose system information such as full path names, system informa...'
+    "the credentials" <- CodeQL py/hardcoded-credentials: '...als in source code is dangerous because the credentials may be easily discovered. For example,...'
+    "the environment" <- CodeQL py/clear-text-logging-sensitive-data: '...e access to this much information about the environment configuration. In the second example th...'
+    "the information" <- CWE-200: '...have their own expectations for whether the information should be protected. These parties incl...'
+    "the source" <- CodeQL py/hardcoded-credentials: '...edentials Credentials are hard coded in the source code of the application. Including unen...'
+    "unauthorized" <- CWE-200: '...Exposure of Sensitive Information to an Unauthorized Actor The product exposes sensitive inf...'
+    "unauthorized actor" <- CWE-200: '...Exposure of Sensitive Information to an Unauthorized Actor The product exposes sensitive informati...'
+    "use" <- CWE-200: '...hese parties include: the product's own users people or organizations whose informa...'
+    "use of" <- CWE-200: '...ion exposure," but this can lead to overuse of CWE-200 in CWE mapping. From the CWE pe...'
+    "user name" <- CodeQL py/hardcoded-credentials: '...Remove hard-coded credentials, such as user names, passwords and certificates, from sour...'
+    "variables" <- CodeQL py/hardcoded-credentials: '...hem in configuration files, environment variables or other data stores if necessary. If p...'
+    "without hard-coding" <- CodeQL py/hardcoded-credentials: '...password , which can be set externally without hard-coding credentials in the source code. The fol...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: CRYPTO (Risk: Medium)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-326 - Inadequate Encryption Strength
+  CWE: CWE-327 - Use of a Broken or Risky Cryptographic Algorithm
+  CWE: CWE-328 - Use of Weak Hash
+  CWE: CWE-330 - Use of Insufficiently Random Values
+  CWE: CWE-338 - Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)
+
+  PYTHON Operations:
+    APIs: hashlib.md5, hashlib.sha1, hashlib.sha256, hashlib.sha512, hashlib.sha384 (+3 more)
+      Source: CodeQL py/weak-cryptographic-algorithm
+      Source: Bandit B303 (md5)
+      Source: Bandit B324 (hashlib)
+    APIs: hmac.new, hmac.compare_digest
+      Source: CodeQL py/weak-cryptographic-algorithm
+    APIs: Crypto.Cipher.AES, Crypto.Cipher.DES, Crypto.PublicKey.RSA, Crypto.Hash, Crypto.Signature (+1 more)
+      Source: Bandit B413 (import_pycrypto)
+      Source: CodeQL py/weak-cryptographic-algorithm
+    APIs: cryptography.fernet.Fernet, cryptography.hazmat
+      Source: CodeQL py/weak-cryptographic-algorithm
+    APIs: ssl.wrap_socket, ssl.create_default_context, ssl.SSLContext
+      Source: Bandit B502 (ssl_with_bad_version)
+      Source: Bandit B504 (ssl_with_no_version)
+      Source: CodeQL py/insecure-protocol
+    APIs: bcrypt.hashpw, bcrypt.checkpw, bcrypt.gensalt
+      Source: Semgrep python.cryptography.bcrypt
+    APIs: secrets.token_hex, secrets.token_bytes, secrets.token_urlsafe, secrets.choice
+      Source: Semgrep python.cryptography.secure-random
+
+  TYPESCRIPT Operations:
+    APIs: crypto.createHash, crypto.createHmac, crypto.createCipher, crypto.createCipheriv, crypto.createDecipher (+7 more)
+      Source: CodeQL js/weak-cryptographic-algorithm
+      Source: Semgrep javascript.crypto.security.audit
+    APIs: bcrypt.hash, bcrypt.compare, bcrypt.genSalt
+      Source: Semgrep javascript.cryptography.bcrypt
+    APIs: Math.random
+      Source: CodeQL js/insecure-randomness
+      Source: Semgrep javascript.lang.security.audit.math-random
+
+  JAVASCRIPT Operations:
+    APIs: crypto.createHash, crypto.createHmac, crypto.createCipher, crypto.createCipheriv, crypto.createDecipher (+7 more)
+      Source: CodeQL js/weak-cryptographic-algorithm
+      Source: Semgrep javascript.crypto.security.audit
+    APIs: bcrypt.hash, bcrypt.compare, bcrypt.genSalt
+      Source: Semgrep javascript.cryptography.bcrypt
+    APIs: Math.random
+      Source: CodeQL js/insecure-randomness
+      Source: Semgrep javascript.lang.security.audit.math-random
+
+  Derived Keywords (91):
+    "a broken" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The pr...'
+    "a cryptographically" <- CodeQL js/insecure-randomness: 'Query: Insecure randomness Using a cryptographically weak pseudo-random number generator to...'
+    "a strong" <- CodeQL py/weak-cryptographic-algorithm: '...e legitimate users. Ensure that you use a strong, modern cryptographic algorithm. Use at...'
+    "a weak" <- CWE-326: '...h for the level of protection required. A weak encryption scheme can be subjected to b...'
+    "algorithm" <- CWE-327: '...Use of a Broken or Risky Cryptographic Algorithm The product uses a broken or risky cryp...'
+    "algorithm is" <- CWE-327: '...Using a non-standard or known-insecure algorithm is dangerous because a determined adversar...'
+    "algorithm that" <- CWE-328: '...e: Use of Weak Hash The product uses an algorithm that produces a digest (output value) that d...'
+    "algorithms" <- CWE-327: '...ic algorithm or protocol. Cryptographic algorithms are the methods by which data is scramb...'
+    "approved" <- CodeQL py/weak-cryptographic-algorithm: '...dern algorithm. NIST, FIPS 140 Annex a: Approved Security Functions . NIST, SP 800-131A:...'
+    "attacker may" <- CodeQL py/weak-cryptographic-algorithm: '...a weak encryption algorithm is used, an attacker may be able to decrypt sensitive data. If a...'
+    "be able" <- CWE-327: '...rous because a determined adversary may be able to break the algorithm and compromise w...'
+    "broken" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The pr...'
+    "broken or" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The produ...'
+    "compromise security" <- CodeQL py/weak-cryptographic-algorithm: '...en or weak cryptographic algorithms can compromise security. Using broken or weak cryptographic alg...'
+    "connection" <- CodeQL py/insecure-protocol: '...insecure SSL/TLS version may leave the connection vulnerable to attacks. Using a broken o...'
+    "context" <- CWE-328: '...t is regarded as "reasonable" varies by context and threat model, but in general, "reas...'
+    "crypt" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores or trans...'
+    "crypto" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The product uses a bro...'
+    "cryptographic" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The product uses a broken or...'
+    "cryptographic algorithm" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The product uses a broken or risky cryp...'
+    "cryptographic algorithms" <- CWE-327: '...ky cryptographic algorithm or protocol. Cryptographic algorithms are the methods by which data is scramb...'
+    "cryptographically" <- CWE-338: 'CWE name: Use of Cryptographically Weak Pseudo-Random Number Generator (PR...'
+    "cryptographically secure" <- CodeQL js/insecure-randomness: '...ble through outside observations. Use a cryptographically secure pseudo-random number generator if the o...'
+    "cryptographically weak" <- CWE-338: 'CWE name: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) T...'
+    "cryptography" <- CWE-327: '...luence by unauthorized actors. Insecure cryptography can be exploited to expose sensitive in...'
+    "digest" <- CWE-328: '...oduct uses an algorithm that produces a digest (output value) that does not meet secur...'
+    "encrypt" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores or trans...'
+    "encryption" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores or transmit...'
+    "encryption algorithm" <- CodeQL py/weak-cryptographic-algorithm: '...re consequences. For example: If a weak encryption algorithm is used, an attacker may be able to dec...'
+    "encryption strength" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores or transmits sensiti...'
+    "example uses" <- CodeQL py/weak-cryptographic-algorithm: '...encryption algorithm to use. The first example uses DES, which is an older algorithm that i...'
+    "functions" <- CWE-328: '...ns; this attack works against such hash functions as MD5, SHA-1, and SHA-2.'
+    "generator" <- CWE-338: '...tographically Weak Pseudo-Random Number Generator (PRNG) The product uses a Pseudo-Random...'
+    "guarantees" <- CWE-328: '...curity context that breaks its security guarantees. For example, using a hash function wit...'
+    "hash" <- CWE-328: 'CWE name: Use of Weak Hash The product uses an algorithm that prod...'
+    "hash function" <- CWE-328: '...es not meet security expectations for a hash function that allows an adversary to reasonably...'
+    "hash functions" <- CWE-328: '...ditions; this attack works against such hash functions as MD5, SHA-1, and SHA-2.'
+    "hashlib" <- Bandit B324: '...ure md4, md5, or sha1 hash functions in hashlib =======================================...'
+    "inadequate" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores...'
+    "inadequate encryption" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores or transmit...'
+    "insufficiently" <- CWE-330: 'CWE name: Use of Insufficiently Random Values The product uses insuffic...'
+    "insufficiently random" <- CWE-330: 'CWE name: Use of Insufficiently Random Values The product uses insufficiently...'
+    "integrity" <- CodeQL py/weak-cryptographic-algorithm: '...ity guarantees such as confidentiality, integrity, and authenticity. Many cryptographic a...'
+    "md4" <- Bandit B324: '...============ B324: Test use of insecure md4, md5, or sha1 hash functions in hashlib...'
+    "md5" <- CWE-328: '...ck works against such hash functions as MD5, SHA-1, and SHA-2.'
+    "new" <- CWE-327: '...ught to be strong. This can happen when new attacks are discovered, or if computing...'
+    "nodejs" <- CodeQL py/weak-cryptographic-algorithm: '...ng the builtin cryptographic library of NodeJS to encrypt some secret data. When creat...'
+    "number" <- CWE-327: '...ography. Accordingly, there are a small number of well-understood and heavily studied...'
+    "number generator" <- CWE-338: '...of Cryptographically Weak Pseudo-Random Number Generator (PRNG) The product uses a Pseudo-Random...'
+    "numbers" <- CWE-330: '...The product uses insufficiently random numbers or values in a security context that de...'
+    "of cryptographically" <- CWE-338: 'CWE name: Use of Cryptographically Weak Pseudo-Random Number Generator (PR...'
+    "of insufficiently" <- CWE-330: 'CWE name: Use of Insufficiently Random Values The product uses insuffic...'
+    "of weak" <- CWE-328: 'CWE name: Use of Weak Hash The product uses an algorithm that...'
+    "or risky" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The product use...'
+    "or weak" <- CWE-327: '...n. Well-known techniques exist to break or weaken various kinds of cryptography. Accord...'
+    "predict" <- CWE-330: '...in a security context that depends on unpredictable numbers.'
+    "predict the" <- CodeQL js/insecure-randomness: '...ord, makes it easier for an attacker to predict the value. Pseudo-random number generators...'
+    "preimage" <- CWE-328: '...easonably determine the original input (preimage attack), find another input that can pr...'
+    "preimage attack" <- CWE-328: '...easonably determine the original input (preimage attack), find another input that can produce t...'
+    "prng" <- CWE-338: '...ly Weak Pseudo-Random Number Generator (PRNG) The product uses a Pseudo-Random Numbe...'
+    "protocol" <- CWE-327: '...ken or risky cryptographic algorithm or protocol. Cryptographic algorithms are the metho...'
+    "pseudo-random" <- CWE-338: 'CWE name: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) The product use...'
+    "pseudo-random number" <- CWE-338: 'CWE name: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) The product uses a Pse...'
+    "random" <- CWE-330: 'CWE name: Use of Insufficiently Random Values The product uses insufficiently...'
+    "random values" <- CWE-330: 'CWE name: Use of Insufficiently Random Values The product uses insufficiently random...'
+    "reasonable" <- CWE-326: '...cted to brute force attacks that have a reasonable chance of succeeding using current atta...'
+    "risky" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The product use...'
+    "risky cryptographic" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorithm The product uses a broken or...'
+    "secret" <- CodeQL py/weak-cryptographic-algorithm: '...aphic library of NodeJS to encrypt some secret data. When creating a Cipher instance t...'
+    "secret data" <- CodeQL py/weak-cryptographic-algorithm: '...aphic library of NodeJS to encrypt some secret data. When creating a Cipher instance to enc...'
+    "secure" <- CWE-327: '...or influence by unauthorized actors. Insecure cryptography can be exploited to expose...'
+    "security guarantees" <- CWE-328: '...h in a security context that breaks its security guarantees. For example, using a hash function wit...'
+    "security-sensitive" <- CodeQL js/insecure-randomness: '...o-random number generator to generate a security-sensitive value may allow an attacker to predict...'
+    "signatures" <- CodeQL py/weak-cryptographic-algorithm: '...If a weak algorithm is used for digital signatures, an attacker may be able to forge signa...'
+    "ssl" <- Bandit B502: '-------------------------- B502: ssl_with_bad_version ----------------------...'
+    "strength" <- CWE-326: 'CWE name: Inadequate Encryption Strength The product stores or transmits sensiti...'
+    "strong" <- CWE-326: '...that is theoretically sound, but is not strong enough for the level of protection requ...'
+    "strong modern" <- CodeQL py/weak-cryptographic-algorithm: '...The second example uses AES, which is a strong modern algorithm. NIST, FIPS 140 Annex a: Appr...'
+    "tls" <- Bandit B502: '...entmodule:: bandit.plugins.insecure_ssl_tls .. autofunction:: ssl_with_bad_version...'
+    "to encrypt" <- CodeQL py/weak-cryptographic-algorithm: '...builtin cryptographic library of NodeJS to encrypt some secret data. When creating a Ciphe...'
+    "to predict" <- CodeQL js/insecure-randomness: '...y-sensitive value may allow an attacker to predict what value will be generated. Using a c...'
+    "use" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algo...'
+    "use of" <- CWE-327: 'CWE name: Use of a Broken or Risky Cryptographic Algorit...'
+    "using broken" <- CodeQL py/weak-cryptographic-algorithm: '...broken or weak cryptographic algorithm Using broken or weak cryptographic algorithms can co...'
+    "values" <- CWE-330: 'CWE name: Use of Insufficiently Random Values The product uses insufficiently random...'
+    "versions" <- CodeQL py/insecure-protocol: '...a modern, strong protocol is used. All versions of SSL, and TLS versions 1.0 and 1.1 ar...'
+    "weak" <- CWE-326: '...for the level of protection required. A weak encryption scheme can be subjected to b...'
+    "weak algorithm" <- CodeQL py/weak-cryptographic-algorithm: '...the underlying cryptography, so using a weak algorithm can have severe consequences. For examp...'
+    "weak cryptographic" <- CodeQL py/weak-cryptographic-algorithm: 'Query: Use of a broken or weak cryptographic algorithm Using broken or weak cryptogr...'
+    "weak hash" <- CWE-328: 'CWE name: Use of Weak Hash The product uses an algorithm that prod...'
+    "weak pseudo-random" <- CWE-338: 'CWE name: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG) The product use...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: DESERIALIZATION (Risk: High)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-502 - Deserialization of Untrusted Data
+  CWE: CWE-611 - Improper Restriction of XML External Entity Reference (XXE)
+  CWE: CWE-776 - Improper Restriction of Recursive Entity References in DTDs (XML Entity Expansion)
+
+  PYTHON Operations:
+    APIs: pickle.load, pickle.loads, pickle.Unpickler
+      Source: CodeQL py/unsafe-deserialization
+      Source: Bandit B301 (pickle)
+      Source: Bandit B302 (marshal)
+      Source: Semgrep python.lang.security.deserialization.avoid-pickle
+    APIs: yaml.load, yaml.unsafe_load, yaml.full_load
+      Source: CodeQL py/unsafe-deserialization
+      Source: Bandit B506 (yaml_load)
+      Source: Semgrep python.lang.security.deserialization.avoid-pyyaml-load
+    APIs: marshal.load, marshal.loads
+      Source: Bandit B302 (marshal)
+    APIs: shelve.open
+      Source: Bandit B302 (shelve)
+    APIs: xml.etree.ElementTree.parse, xml.etree.ElementTree.fromstring, xml.dom.minidom.parse, xml.dom.minidom.parseString, xml.sax.parse (+1 more)
+      Source: Bandit B313 (xml_bad_cElementTree)
+      Source: Bandit B314 (xml_bad_ElementTree)
+      Source: Bandit B315 (xml_bad_expatreader)
+      Source: Bandit B316 (xml_bad_expatbuilder)
+      Source: Bandit B317 (xml_bad_sax)
+      Source: Bandit B318 (xml_bad_minidom)
+      Source: Bandit B319 (xml_bad_pulldom)
+      Source: Bandit B320 (xml_bad_etree)
+      Source: CodeQL py/xml-bomb
+      Source: CodeQL py/xxe
+    APIs: jsonpickle.decode, jsonpickle.loads
+      Source: Semgrep python.lang.security.deserialization.avoid-jsonpickle
+
+  TYPESCRIPT Operations:
+    APIs: yaml.load, yaml.loadAll
+      Source: CodeQL js/unsafe-deserialization
+      Source: Semgrep javascript.lang.security.audit.unsafe-yaml-load
+    APIs: xml2js.parseString, xml2js.Parser
+      Source: CodeQL js/xxe
+    APIs: serialize, node-serialize
+      Source: CodeQL js/unsafe-deserialization
+      Source: Semgrep javascript.lang.security.audit.node-serialize
+
+  JAVASCRIPT Operations:
+    APIs: yaml.load, yaml.loadAll
+      Source: CodeQL js/unsafe-deserialization
+      Source: Semgrep javascript.lang.security.audit.unsafe-yaml-load
+    APIs: xml2js.parseString, xml2js.Parser
+      Source: CodeQL js/xxe
+    APIs: serialize, node-serialize
+      Source: CodeQL js/unsafe-deserialization
+      Source: Semgrep javascript.lang.security.audit.node-serialize
+
+  Derived Keywords (92):
+    "allow attackers" <- CodeQL py/unsafe-deserialization: '...Deserializing user-controlled data may allow attackers to execute arbitrary code.'
+    "an xml" <- CWE-611: '...Entity Reference The product processes an XML document that can contain XML entities...'
+    "and yaml" <- Bandit B506: '...L for more information on ``yaml.load`` and yaml.safe_load :Example: .. code-block:: non...'
+    "arbitrary" <- CodeQL py/unsafe-deserialization: '...led data may allow attackers to execute arbitrary code.'
+    "arbitrary code" <- CodeQL py/unsafe-deserialization: '...led data may allow attackers to execute arbitrary code.'
+    "arbitrary python" <- Bandit B506: '...on provides the ability to construct an arbitrary Python object, which may be dangerous if you r...'
+    "attackers to" <- CodeQL py/unsafe-deserialization: '...ializing user-controlled data may allow attackers to execute arbitrary code.'
+    "avoid using" <- Semgrep python.lang.security.deserialization.avoid-pickle: 'Avoid using `pickle`, which is known to lead to cod...'
+    "be manipulated" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...n unpickling, the serialized data could be manipulated to run arbitrary code. Instead, conside...'
+    "consider serializing" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...pulated to run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar...'
+    "data" <- CWE-502: 'CWE name: Deserialization of Untrusted Data The product deserializes untrusted data...'
+    "data could" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...lities. When unpickling, the serialized data could be manipulated to run arbitrary code. I...'
+    "data deserializing" <- CodeQL py/unsafe-deserialization: '...ery: Deserialization of user-controlled data Deserializing user-controlled data may allow attacker...'
+    "deserialization" <- CWE-502: 'CWE name: Deserialization of Untrusted Data The product deseriali...'
+    "deserialization of" <- CWE-502: 'CWE name: Deserialization of Untrusted Data The product deserializes...'
+    "deserializing" <- CodeQL py/unsafe-deserialization: '...Deserialization of user-controlled data Deserializing user-controlled data may allow attacker...'
+    "deserializing user-controlled" <- CodeQL py/unsafe-deserialization: '...Deserialization of user-controlled data Deserializing user-controlled data may allow attackers to execute arb...'
+    "document" <- CWE-611: '...Reference The product processes an XML document that can contain XML entities with URIs...'
+    "document with" <- CodeQL py/xml-bomb: '...expansion Parsing user input as an XML document with arbitrary internal entity expansion is...'
+    "documents" <- CWE-611: '...XML entities with URIs that resolve to documents outside of the intended sphere of contr...'
+    "dtd" <- CWE-776: '...ction of Recursive Entity References in DTDs ('XML Entity Expansion') The product u...'
+    "dtds" <- CWE-776: '...ction of Recursive Entity References in DTDs ('XML Entity Expansion') The product us...'
+    "dump" <- Bandit B506: '...: examples/yaml_load.py:5 4 ystr = yaml.dump({'a' : 1, 'b' : 2, 'c' : 3}) 5 y = yaml...'
+    "entities" <- CWE-611: '...es an XML document that can contain XML entities with URIs that resolve to documents out...'
+    "entity" <- CWE-611: '...e: Improper Restriction of XML External Entity Reference The product processes an XML...'
+    "entity expansion" <- CWE-776: '...cursive Entity References in DTDs ('XML Entity Expansion') The product uses XML documents and al...'
+    "entity reference" <- CWE-611: '...e: Improper Restriction of XML External Entity Reference The product processes an XML document t...'
+    "entity references" <- CWE-776: '...name: Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion') The pr...'
+    "execution vulnerabilities" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...pickle`, which is known to lead to code execution vulnerabilities. When unpickling, the serialized data c...'
+    "expansion" <- CWE-776: '...Entity References in DTDs ('XML Entity Expansion') The product uses XML documents and al...'
+    "expansion is" <- CodeQL py/xml-bomb: '...document with arbitrary internal entity expansion is vulnerable to denial-of-service attacks...'
+    "expansion parsing" <- CodeQL py/xml-bomb: 'Query: XML internal entity expansion Parsing user input as an XML document with arbi...'
+    "external" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The product processes...'
+    "external entity" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The product processes an XML...'
+    "improper" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Refe...'
+    "improper restriction" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The pr...'
+    "in dtds" <- CWE-776: '...triction of Recursive Entity References in DTDs ('XML Entity Expansion') The product us...'
+    "input as" <- CodeQL py/xml-bomb: '...internal entity expansion Parsing user input as an XML document with arbitrary internal...'
+    "internal entity" <- CodeQL py/xml-bomb: 'Query: XML internal entity expansion Parsing user input as an XML...'
+    "is known" <- Semgrep python.lang.security.deserialization.avoid-pickle: 'Avoid using `pickle`, which is known to lead to code execution vulnerabiliti...'
+    "known to" <- Semgrep python.lang.security.deserialization.avoid-pickle: 'Avoid using `pickle`, which is known to lead to code execution vulnerabilities....'
+    "load" <- Bandit B506: '...============ B506: Test for use of yaml load =============================== This pl...'
+    "load function" <- Bandit B506: '...ction from the PyYAML package. The yaml.load function provides the ability to construct an ar...'
+    "loadingyaml" <- Bandit B506: '...s://pyyaml.org/wiki/PyYAMLDocumentation#LoadingYAML for more information on ``yaml.load`` a...'
+    "manipulated to" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...npickling, the serialized data could be manipulated to run arbitrary code. Instead, consider s...'
+    "objects" <- Bandit B506: '...ad limits this ability to simple Python objects like integers or lists. Please see http...'
+    "of recursive" <- CWE-776: 'CWE name: Improper Restriction of Recursive Entity References in DTDs ('XML Entity...'
+    "of untrusted" <- CWE-502: 'CWE name: Deserialization of Untrusted Data The product deserializes untrusted...'
+    "of user-controlled" <- CodeQL py/unsafe-deserialization: 'Query: Deserialization of user-controlled data Deserializing user-controlled data...'
+    "of xml" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The product p...'
+    "parsing" <- CodeQL py/xml-bomb: 'Query: XML internal entity expansion Parsing user input as an XML document with arbi...'
+    "parsing user" <- CodeQL py/xml-bomb: 'Query: XML internal entity expansion Parsing user input as an XML document with arbitrary...'
+    "pyyaml" <- Bandit B506: '...of the ``yaml.load`` function from the PyYAML package. The yaml.load function provide...'
+    "pyyamldocumentation" <- Bandit B506: '...sts. Please see https://pyyaml.org/wiki/PyYAMLDocumentation#LoadingYAML for more information on ``y...'
+    "recursive" <- CWE-776: 'CWE name: Improper Restriction of Recursive Entity References in DTDs ('XML Entity...'
+    "recursive entity" <- CWE-776: 'CWE name: Improper Restriction of Recursive Entity References in DTDs ('XML Entity Expansi...'
+    "reference" <- CWE-611: '...oper Restriction of XML External Entity Reference The product processes an XML document t...'
+    "references" <- CWE-776: '...mproper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion') The pr...'
+    "references in" <- CWE-776: '...mproper Restriction of Recursive Entity References in DTDs ('XML Entity Expansion') The produ...'
+    "relevant data" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...code. Instead, consider serializing the relevant data as JSON or a similar text-based seriali...'
+    "restriction" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The pr...'
+    "restriction of" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The produ...'
+    "run arbitrary" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...serialized data could be manipulated to run arbitrary code. Instead, consider serializing the...'
+    "safe_load" <- Bandit B506: '...an untrusted source. The function yaml.safe_load limits this ability to simple Python ob...'
+    "serialized" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...n vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitr...'
+    "serialized data" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...n vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitrary c...'
+    "serializing" <- CodeQL py/unsafe-deserialization: '...serialization of user-controlled data Deserializing user-controlled data may allow attacker...'
+    "serializing the" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...o run arbitrary code. Instead, consider serializing the relevant data as JSON or a similar text...'
+    "the relevant" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...ary code. Instead, consider serializing the relevant data as JSON or a similar text-based se...'
+    "the serialized" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...ution vulnerabilities. When unpickling, the serialized data could be manipulated to run arbitr...'
+    "the yaml" <- Bandit B506: '...oad`` function from the PyYAML package. The yaml.load function provides the ability to c...'
+    "to code" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...using `pickle`, which is known to lead to code execution vulnerabilities. When unpickl...'
+    "to lead" <- Semgrep python.lang.security.deserialization.avoid-pickle: 'Avoid using `pickle`, which is known to lead to code execution vulnerabilities. When...'
+    "to run" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...he serialized data could be manipulated to run arbitrary code. Instead, consider seria...'
+    "to xxe" <- CodeQL py/xxe: '...external entity expansion is vulnerable to XXE attacks.'
+    "unpickling" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...to code execution vulnerabilities. When unpickling, the serialized data could be manipulat...'
+    "untrusted" <- CWE-502: 'CWE name: Deserialization of Untrusted Data The product deserializes untrusted...'
+    "untrusted data" <- CWE-502: 'CWE name: Deserialization of Untrusted Data The product deserializes untrusted data...'
+    "user-controlled data" <- CodeQL py/unsafe-deserialization: 'Query: Deserialization of user-controlled data Deserializing user-controlled data may...'
+    "when unpickling" <- Semgrep python.lang.security.deserialization.avoid-pickle: '...lead to code execution vulnerabilities. When unpickling, the serialized data could be manipulat...'
+    "with external" <- CodeQL py/xxe: '...n Parsing user input as an XML document with external entity expansion is vulnerable to XXE a...'
+    "xml" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The product p...'
+    "xml document" <- CWE-611: '...tity Reference The product processes an XML document that can contain XML entities with URIs...'
+    "xml entity" <- CWE-776: '...f Recursive Entity References in DTDs ('XML Entity Expansion') The product uses XML docume...'
+    "xml external" <- CWE-611: 'CWE name: Improper Restriction of XML External Entity Reference The product processes...'
+    "xxe" <- CodeQL py/xxe: '...ernal entity expansion is vulnerable to XXE attacks.'
+    "xxe attacks" <- CodeQL py/xxe: '...ernal entity expansion is vulnerable to XXE attacks.'
+    "yaml" <- Bandit B506: '...================= B506: Test for use of yaml load =============================== Th...'
+    "yaml input" <- Semgrep python.lang.security.deserialization.avoid-pyyaml-load: '...YAML. An attacker with control over the YAML input could create special YAML input that al...'
+    "yaml load" <- Bandit B506: '...================= B506: Test for use of yaml load =============================== This pl...'
+    "yaml_load" <- Bandit B506: '...xample: .. code-block:: none >> Issue: [yaml_load] Use of unsafe yaml load. Allows instan...'
+    "ystr" <- Bandit B506: '...ml) Location: examples/yaml_load.py:5 4 ystr = yaml.dump({'a' : 1, 'b' : 2, 'c' : 3}...'
+
+────────────────────────────────────────────────────────────────────────────────
+Property: AUTH (Risk: High)
+────────────────────────────────────────────────────────────────────────────────
+  CWE: CWE-287 - Improper Authentication
+  CWE: CWE-306 - Missing Authentication for Critical Function
+  CWE: CWE-384 - Session Fixation
+  CWE: CWE-614 - Sensitive Cookie in HTTPS Session Without 'Secure' Attribute
+  CWE: CWE-916 - Use of Password Hash With Insufficient Computational Effort
+
+  PYTHON Operations:
+    APIs: jwt.encode, jwt.decode
+      Source: CodeQL py/jwt-missing-algorithm
+      Source: Semgrep python.jwt.security.audit
+    APIs: flask_login.login_user, flask_login.logout_user, flask_login.current_user, flask_login.login_required
+      Source: Semgrep python.flask.security.audit.session
+    APIs: django.contrib.auth.authenticate, django.contrib.auth.login, django.contrib.auth.logout
+      Source: Semgrep python.django.security.audit.authentication
+    APIs: passlib.hash, passlib.context.CryptContext
+      Source: Semgrep python.cryptography.password-hashing
+    APIs: oauth2client, authlib, oauthlib
+      Source: Semgrep python.oauth.security.audit
+
+  TYPESCRIPT Operations:
+    APIs: jsonwebtoken.sign, jsonwebtoken.verify, jsonwebtoken.decode, jwt.sign, jwt.verify
+      Source: CodeQL js/jwt-missing-algorithm
+      Source: Semgrep javascript.jsonwebtoken.security.audit
+    APIs: passport.authenticate, passport.use, passport.initialize, passport.session
+      Source: Semgrep javascript.passport.security.audit
+    APIs: express-session, cookie-session
+      Source: CodeQL js/insecure-cookie
+      Source: Semgrep javascript.express.security.audit.session
+    APIs: oauth, openid-client
+      Source: Semgrep javascript.oauth.security.audit
+
+  JAVASCRIPT Operations:
+    APIs: jsonwebtoken.sign, jsonwebtoken.verify, jsonwebtoken.decode, jwt.sign, jwt.verify
+      Source: CodeQL js/jwt-missing-algorithm
+      Source: Semgrep javascript.jsonwebtoken.security.audit
+    APIs: passport.authenticate, passport.use, passport.initialize, passport.session
+      Source: Semgrep javascript.passport.security.audit
+    APIs: express-session, cookie-session
+      Source: CodeQL js/insecure-cookie
+      Source: Semgrep javascript.express.security.audit.session
+    APIs: oauth, openid-client
+      Source: Semgrep javascript.oauth.security.audit
+
+  Derived Keywords (98):
+    "a hash" <- CWE-916: '...putational Effort The product generates a hash for a password, but it uses a scheme th...'
+    "a scenario" <- CWE-384: '...y to steal authenticated sessions. Such a scenario is commonly observed when: A web applic...'
+    "a static" <- Semgrep python.oauth.security.audit: '...ted asyncio subprocess function without a static string. If this data can be controlled...'
+    "a user" <- CWE-384: '...E name: Session Fixation Authenticating a user, or otherwise establishing a new user s...'
+    "amount" <- CWE-306: '...user identity or consumes a significant amount of resources.'
+    "amount of" <- CWE-306: '...user identity or consumes a significant amount of resources.'
+    "an instance" <- Semgrep python.oauth.security.audit: '...trolled by a malicious actor, it may be an instance of command injection. Audit the use of...'
+    "asyncio" <- Semgrep python.oauth.security.audit: 'Detected asyncio subprocess function without a static st...'
+    "asyncio subprocess" <- Semgrep python.oauth.security.audit: 'Detected asyncio subprocess function without a static string. If th...'
+    "attribute" <- CWE-614: '...ookie in HTTPS Session Without 'Secure' Attribute The Secure attribute for sensitive cook...'
+    "audit the" <- Semgrep python.oauth.security.audit: '...ay be an instance of command injection. Audit the use of this call to ensure it is not co...'
+    "authenticated" <- CWE-384: '...es an attacker the opportunity to steal authenticated sessions. Such a scenario is commonly o...'
+    "authenticates" <- CWE-384: '...mmonly observed when: A web application authenticates a user without first invalidating the e...'
+    "authentication" <- CWE-287: 'CWE name: Improper Authentication When an actor claims to have a given id...'
+    "authentication for" <- CWE-306: 'CWE name: Missing Authentication for Critical Function The product does not...'
+    "be controlled" <- Semgrep python.oauth.security.audit: '...thout a static string. If this data can be controlled by a malicious actor, it may be an inst...'
+    "call to" <- Semgrep python.oauth.security.audit: '...ommand injection. Audit the use of this call to ensure it is not controllable by an ext...'
+    "computational" <- CWE-916: '...Use of Password Hash With Insufficient Computational Effort The product generates a hash for...'
+    "computational effort" <- CWE-916: '...Use of Password Hash With Insufficient Computational Effort The product generates a hash for a pass...'
+    "compute" <- CWE-916: '...nsive. Many password storage mechanisms compute a hash and store the hash, instead of s...'
+    "compute the" <- CWE-916: '...ack: The amount of CPU time required to compute the hash ("stretching") The amount of memor...'
+    "computing" <- CWE-916: '...nvolves accepting an incoming password, computing its hash, and comparing it to the store...'
+    "controllable" <- Semgrep python.oauth.security.audit: '...he use of this call to ensure it is not controllable by an external resource. You may consid...'
+    "controllable by" <- Semgrep python.oauth.security.audit: '...he use of this call to ensure it is not controllable by an external resource. You may consider...'
+    "cookie" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attri...'
+    "cookie in" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attribut...'
+    "cracking" <- CWE-916: '...ational effort that would make password cracking attacks infeasible or expensive. Many p...'
+    "critical" <- CWE-306: 'CWE name: Missing Authentication for Critical Function The product does not perform a...'
+    "critical function" <- CWE-306: 'CWE name: Missing Authentication for Critical Function The product does not perform any authen...'
+    "detected asyncio" <- Semgrep python.oauth.security.audit: 'Detected asyncio subprocess function without a static st...'
+    "efficiency" <- CWE-916: '...ven cryptographic hashes. However, this efficiency is a problem for password storage, beca...'
+    "effort" <- CWE-916: '...rd Hash With Insufficient Computational Effort The product generates a hash for a pass...'
+    "ensure it" <- Semgrep python.oauth.security.audit: '...njection. Audit the use of this call to ensure it is not controllable by an external reso...'
+    "existing" <- CWE-384: '...user session, without invalidating any existing session identifier gives an attacker th...'
+    "existing session" <- CWE-384: '...user session, without invalidating any existing session identifier gives an attacker the opport...'
+    "external resource" <- Semgrep python.oauth.security.audit: '...to ensure it is not controllable by an external resource. You may consider using 'shlex.escape()...'
+    "fixation" <- CWE-384: 'CWE name: Session Fixation Authenticating a user, or otherwise est...'
+    "for critical" <- CWE-306: 'CWE name: Missing Authentication for Critical Function The product does not perform a...'
+    "function" <- CWE-306: '...me: Missing Authentication for Critical Function The product does not perform any authen...'
+    "function without" <- Semgrep python.oauth.security.audit: 'Detected asyncio subprocess function without a static string. If this data can be co...'
+    "hash" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Effort...'
+    "hash and" <- CWE-916: '...y password storage mechanisms compute a hash and store the hash, instead of storing the...'
+    "hash with" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Effort The p...'
+    "hashes" <- CWE-916: '...th minimal overhead, even cryptographic hashes. However, this efficiency is a problem...'
+    "https" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute The...'
+    "https session" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute The Secure a...'
+    "identifier" <- CWE-384: '...thout invalidating any existing session identifier gives an attacker the opportunity to st...'
+    "identity" <- CWE-287: '...on When an actor claims to have a given identity, the product does not prove or insuffic...'
+    "improper" <- CWE-287: 'CWE name: Improper Authentication When an actor claims to...'
+    "improper authentication" <- CWE-287: 'CWE name: Improper Authentication When an actor claims to have a given id...'
+    "in https" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute The...'
+    "instance of" <- Semgrep python.oauth.security.audit: '...lled by a malicious actor, it may be an instance of command injection. Audit the use of thi...'
+    "insufficient" <- CWE-287: '...identity, the product does not prove or insufficiently proves that the claim is correct.'
+    "insufficient computational" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Effort The product generates a hash for...'
+    "invalidating" <- CWE-384: '...stablishing a new user session, without invalidating any existing session identifier gives a...'
+    "jwt" <- Semgrep python.jwt.security.audit: 'The object is passed strictly to jwt.encode(...) Make sure that sensitive in...'
+    "massively-parallel" <- CWE-916: '...thin a very short amount of time, using massively-parallel computing (such as cloud computing) and...'
+    "massively-parallel attack" <- CWE-916: '...ant to its strength against an offline, massively-parallel attack: The amount of CPU time required to com...'
+    "may consider" <- Semgrep python.oauth.security.audit: '...ntrollable by an external resource. You may consider using 'shlex.escape()'.'
+    "missing" <- CWE-306: 'CWE name: Missing Authentication for Critical Function Th...'
+    "missing authentication" <- CWE-306: 'CWE name: Missing Authentication for Critical Function The product does...'
+    "mode" <- CWE-916: '...ficiently. Without a built-in workload, modern attacks can compute large numbers of...'
+    "mode of" <- Semgrep python.django.security.audit.authentication: 'An encryption mode of operation is being used without proper...'
+    "not controllable" <- Semgrep python.oauth.security.audit: '...it the use of this call to ensure it is not controllable by an external resource. You may consid...'
+    "not provide" <- CWE-916: '...assword, but it uses a scheme that does not provide a sufficient level of computational eff...'
+    "of command" <- Semgrep python.oauth.security.audit: '...malicious actor, it may be an instance of command injection. Audit the use of this call t...'
+    "of operation" <- Semgrep python.django.security.audit.authentication: 'An encryption mode of operation is being used without proper message au...'
+    "of password" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Ef...'
+    "offline" <- CWE-916: '...then the attacker can store the hashes offline and use various techniques to crack the...'
+    "password" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Ef...'
+    "password cracking" <- CWE-916: '...of computational effort that would make password cracking attacks infeasible or expensive. Many p...'
+    "password hash" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Effort...'
+    "password storage" <- CWE-916: '...g attacks infeasible or expensive. Many password storage mechanisms compute a hash and store the...'
+    "reduce" <- CWE-916: '...em for password storage, because it can reduce an attacker's workload for brute-force...'
+    "required to" <- CWE-916: '...parallel attack: The amount of CPU time required to compute the hash ("stretching") The amo...'
+    "scenario" <- CWE-384: '...to steal authenticated sessions. Such a scenario is commonly observed when: A web applic...'
+    "scheme" <- CWE-916: '...es a hash for a password, but it uses a scheme that does not provide a sufficient leve...'
+    "secure" <- CWE-614: '...sitive Cookie in HTTPS Session Without 'Secure' Attribute The Secure attribute for sen...'
+    "secure attribute" <- CWE-614: '...Session Without 'Secure' Attribute The Secure attribute for sensitive cookies in HTTPS sessions...'
+    "sensitive" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure...'
+    "sensitive cookie" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attri...'
+    "session" <- CWE-384: 'CWE name: Session Fixation Authenticating a user, or othe...'
+    "session fixation" <- CWE-384: 'CWE name: Session Fixation Authenticating a user, or otherwise est...'
+    "session identifier" <- CWE-384: '...sion, without invalidating any existing session identifier gives an attacker the opportunity to st...'
+    "session without" <- CWE-614: 'CWE name: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute The Secure attribute...'
+    "sessions" <- CWE-384: '...the opportunity to steal authenticated sessions. Such a scenario is commonly observed w...'
+    "shlex" <- Semgrep python.oauth.security.audit: '...ernal resource. You may consider using 'shlex.escape()'.'
+    "static string" <- Semgrep python.oauth.security.audit: '...d asyncio subprocess function without a static string. If this data can be controlled by a ma...'
+    "store the" <- CWE-916: '...d storage mechanisms compute a hash and store the hash, instead of storing the original p...'
+    "the hash" <- CWE-916: '...age mechanisms compute a hash and store the hash, instead of storing the original passwo...'
+    "the hashes" <- CWE-916: '...ord cracking. If an attacker can obtain the hashes through some other method (such as SQL...'
+    "the passwords" <- CWE-916: '...ine and use various techniques to crack the passwords by computing hashes efficiently. Withou...'
+    "this data" <- Semgrep python.oauth.security.audit: '...ss function without a static string. If this data can be controlled by a malicious actor,...'
+    "to compute" <- CWE-916: '...attack: The amount of CPU time required to compute the hash ("stretching") The amount of m...'
+    "use" <- CWE-306: '...functionality that requires a provable user identity or consumes a significant amo...'
+    "use of" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computa...'
+    "with insufficient" <- CWE-916: 'CWE name: Use of Password Hash With Insufficient Computational Effort The product genera...'
+    "workload" <- CWE-916: '...ge, because it can reduce an attacker's workload for brute-force password cracking. If a...'
+
+================================================================================
+TOTALS: 437 API patterns, 737 keywords
+Properties: 8
+CWEs covered: 32
+Trusted sources: CodeQL, Semgrep, Bandit, MITRE CWE
+================================================================================

@@ -1,0 +1,117 @@
+
+==========================================================================================
+DATASET OVERVIEW
+==========================================================================================
+Total tools loaded: 1153
+Tools with security operations: 1153
+Tools with descriptions: 915
+Analyzable (both): 915
+
+==========================================================================================
+RQ1: KEYWORD MATCHING (Trusted-Source Keywords)
+==========================================================================================
+Average transparency: 45.1%
+Median transparency: 0.0%
+Fully transparent: 396/915 (43.3%)
+Not transparent: 486/915 (53.1%)
+
+Property             Risk       Rate            Missing         Avg Sim   
+----------------------------------------------------------------------
+COMMAND_EXEC         Critical   34.3% (23/67) 65.7%         0.343
+FILE_SYSTEM          High       61.3% (73/119) 38.7%         0.613
+NETWORK              High       45.3% (134/296) 54.7%         0.453
+DATABASE             High       65.0% (76/117) 35.0%         0.650
+INFO_EXPOSURE        Medium     33.6% (138/411) 66.4%         0.336
+CRYPTO               Medium     81.8% (9/11) 18.2%         0.818
+
+==========================================================================================
+TF-IDF COSINE SIMILARITY - THRESHOLD SENSITIVITY
+==========================================================================================
+Threshold    Avg Transp   Fully      None       COMMAND_   FILE_SYS   NETWORK    DATABASE   INFO_EXP   CRYPTO     DESERIAL   AUTH      
+----------------------------------------------------------------------------------------------------------------------------
+0.05         23.4%        203        689        4.5%       48.7%      20.3%      43.6%      13.6%      18.2%      N/A        N/A       
+0.10         2.4%         21         892        0.0%       5.9%       3.0%       6.0%       0.0%       0.0%       N/A        N/A       
+0.15         0.3%         3          912        0.0%       0.0%       0.7%       0.9%       0.0%       0.0%       N/A        N/A       
+0.20         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+0.25         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+0.30         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+0.40         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+0.50         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+
+==========================================================================================
+SENTENCE EMBEDDINGS - THRESHOLD SENSITIVITY
+==========================================================================================
+Threshold    Avg Transp   Fully      None       COMMAND_   FILE_SYS   NETWORK    DATABASE   INFO_EXP   CRYPTO     DESERIAL   AUTH      
+----------------------------------------------------------------------------------------------------------------------------
+0.15         22.2%        189        698        11.9%      18.5%      16.2%      50.4%      21.2%      9.1%       N/A        N/A       
+0.20         12.4%        107        795        3.0%       11.8%      9.8%       27.4%      11.4%      9.1%       N/A        N/A       
+0.25         4.8%         41         868        1.5%       9.2%       4.1%       11.1%      2.9%       0.0%       N/A        N/A       
+0.30         1.8%         16         898        0.0%       5.0%       1.7%       4.3%       0.2%       0.0%       N/A        N/A       
+0.35         1.0%         9          906        0.0%       4.2%       1.0%       0.9%       0.0%       0.0%       N/A        N/A       
+0.40         0.7%         6          909        0.0%       2.5%       0.7%       0.9%       0.0%       0.0%       N/A        N/A       
+0.45         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+0.50         0.0%         0          915        0.0%       0.0%       0.0%       0.0%       0.0%       0.0%       N/A        N/A       
+
+==========================================================================================
+RQ3: MISSING SECURITY INFORMATION
+==========================================================================================
+Property             Risk       Keyword          TF-IDF@0.15      Embed@0.35      
+---------------------------------------------------------------------------------
+COMMAND_EXEC         Critical   65.7% (44/67) 100.0% (67/67) 100.0% (67/67)
+FILE_SYSTEM          High       38.7% (46/119) 100.0% (119/119) 95.8% (114/119)
+NETWORK              High       54.7% (162/296) 99.3% (294/296) 99.0% (293/296)
+DATABASE             High       35.0% (41/117) 99.1% (116/117) 99.1% (116/117)
+INFO_EXPOSURE        Medium     66.4% (273/411) 100.0% (411/411) 100.0% (411/411)
+CRYPTO               Medium     18.2% (2/11) 100.0% (11/11) 100.0% (11/11)
+DESERIALIZATION      High       N/A              N/A              N/A             
+AUTH                 High       N/A              N/A              N/A             
+
+==========================================================================================
+STATISTICAL ANALYSIS (Keyword Matching)
+==========================================================================================
+
+Chi-Square Test (transparency rates differ across properties):
+  chi2 = 62.464, df = 5, p = 3.76e-12
+  Cramer's V = 0.2473 (effect size)
+  Significant at p<0.01: Yes
+
+95% Confidence Intervals (per-property transparency rates):
+  Property             Rate       95% CI               n     
+  --------------------------------------------------------
+  COMMAND_EXEC         34.3%     [24.1%, 46.3%]     67
+  FILE_SYSTEM          61.3%     [52.4%, 69.6%]     119
+  NETWORK              45.3%     [39.7%, 51.0%]     296
+  DATABASE             65.0%     [56.0%, 73.0%]     117
+  INFO_EXPOSURE        33.6%     [29.2%, 38.3%]     411
+  CRYPTO               81.8%     [52.3%, 94.9%]     11
+
+Mann-Whitney U Tests (transparency by language):
+  javascript_vs_python: U=8860, p=0.0000*, r=0.466, means=5.4% vs 49.7%
+  javascript_vs_typescript: U=4602, p=0.0000*, r=0.382, means=5.4% vs 43.2%
+  python_vs_typescript: U=84218, p=0.0710, r=-0.068, means=49.7% vs 43.2%
+
+Kruskal-Wallis Test (transparency across all languages):
+  H = 43.1037, p = 0.0000
+  Significant at p<0.05: Yes
+
+Spearman Correlation (description length vs transparency):
+  rho = 0.4618, p = 1.59e-49, n = 915
+  Interpretation: moderate positive
+
+Overall Transparency Score:
+  Mean = 45.1% (95% CI: [41.9%, 48.3%])
+  SD = 0.489, n = 915
+
+==========================================================================================
+TRANSPARENCY BY LANGUAGE
+==========================================================================================
+  javascript: n=56, mean=5.4%, median=0.0%, fully_transparent=3, not_transparent=53
+  python: n=593, mean=49.7%, median=50.0%, fully_transparent=279, not_transparent=283
+  typescript: n=266, mean=43.2%, median=0.0%, fully_transparent=114, not_transparent=150
+
+==========================================================================================
+TRANSPARENCY BY DESCRIPTION LENGTH
+==========================================================================================
+  Short (<50): n=154, mean=24.7%
+  Medium (50-200): n=392, mean=27.8%
+  Long (>200): n=369, mean=72.0%

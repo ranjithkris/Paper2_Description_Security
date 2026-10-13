@@ -1,0 +1,288 @@
+{
+  "rq1": {
+    "total_tools": 6877,
+    "tools_with_srms": 1153,
+    "tools_with_description": 4821,
+    "analyzable": 915,
+    "avg_transparency": 0.3683060109289618,
+    "median_transparency": 0.0,
+    "fully_transparent": 320,
+    "partially_transparent": 34,
+    "not_transparent": 561,
+    "per_property": {
+      "COMMAND_EXEC": {
+        "total": 67,
+        "mentioned": 7,
+        "rate": 0.1044776119402985,
+        "risk": "Critical"
+      },
+      "FILE_SYSTEM": {
+        "total": 119,
+        "mentioned": 74,
+        "rate": 0.6218487394957983,
+        "risk": "High"
+      },
+      "NETWORK": {
+        "total": 296,
+        "mentioned": 125,
+        "rate": 0.4222972972972973,
+        "risk": "High"
+      },
+      "DATABASE": {
+        "total": 117,
+        "mentioned": 79,
+        "rate": 0.6752136752136753,
+        "risk": "High"
+      },
+      "INFO_EXPOSURE": {
+        "total": 411,
+        "mentioned": 88,
+        "rate": 0.2141119221411192,
+        "risk": "Medium"
+      },
+      "CRYPTO": {
+        "total": 11,
+        "mentioned": 0,
+        "rate": 0.0,
+        "risk": "Medium"
+      }
+    },
+    "by_language": {
+      "typescript": {
+        "count": 266,
+        "avg_score": 0.31203007518796994,
+        "fully_transparent": 82,
+        "not_transparent": 182
+      },
+      "python": {
+        "count": 593,
+        "avg_score": 0.4266441821247892,
+        "fully_transparent": 237,
+        "not_transparent": 324
+      },
+      "javascript": {
+        "count": 56,
+        "avg_score": 0.017857142857142856,
+        "fully_transparent": 1,
+        "not_transparent": 55
+      }
+    }
+  },
+  "rq3": {
+    "missing_rates": {
+      "CRYPTO": {
+        "total": 11,
+        "missing": 11,
+        "missing_rate": 1.0,
+        "risk": "Medium"
+      },
+      "COMMAND_EXEC": {
+        "total": 67,
+        "missing": 60,
+        "missing_rate": 0.8955223880597015,
+        "risk": "Critical"
+      },
+      "INFO_EXPOSURE": {
+        "total": 411,
+        "missing": 323,
+        "missing_rate": 0.7858880778588808,
+        "risk": "Medium"
+      },
+      "NETWORK": {
+        "total": 296,
+        "missing": 171,
+        "missing_rate": 0.5777027027027027,
+        "risk": "High"
+      },
+      "FILE_SYSTEM": {
+        "total": 119,
+        "missing": 45,
+        "missing_rate": 0.37815126050420167,
+        "risk": "High"
+      },
+      "DATABASE": {
+        "total": 117,
+        "missing": 38,
+        "missing_rate": 0.3247863247863248,
+        "risk": "High"
+      }
+    },
+    "top_missing_combinations": [
+      {
+        "combination": [
+          "INFO_EXPOSURE"
+        ],
+        "count": 289
+      },
+      {
+        "combination": [
+          "NETWORK"
+        ],
+        "count": 137
+      },
+      {
+        "combination": [
+          "COMMAND_EXEC"
+        ],
+        "count": 45
+      },
+      {
+        "combination": [
+          "DATABASE"
+        ],
+        "count": 38
+      },
+      {
+        "combination": [
+          "INFO_EXPOSURE",
+          "NETWORK"
+        ],
+        "count": 29
+      },
+      {
+        "combination": [
+          "FILE_SYSTEM"
+        ],
+        "count": 26
+      },
+      {
+        "combination": [
+          "COMMAND_EXEC",
+          "FILE_SYSTEM"
+        ],
+        "count": 14
+      },
+      {
+        "combination": [
+          "CRYPTO"
+        ],
+        "count": 7
+      },
+      {
+        "combination": [
+          "FILE_SYSTEM",
+          "INFO_EXPOSURE"
+        ],
+        "count": 4
+      },
+      {
+        "combination": [
+          "CRYPTO",
+          "NETWORK"
+        ],
+        "count": 4
+      }
+    ],
+    "critical_missing_command_exec": {
+      "count": 60,
+      "total_command_exec_tools": 67,
+      "examples": [
+        {
+          "name": "look",
+          "repo": "ahujasid/blender-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "INFO_EXPOSURE",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 1590
+        },
+        {
+          "name": "create-videojungle-project",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 86
+        },
+        {
+          "name": "edit-locally",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 61
+        },
+        {
+          "name": "generate-edit-from-videos",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 138
+        },
+        {
+          "name": "generate-edit-from-single-video",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 53
+        },
+        {
+          "name": "update-video-edit",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 56
+        },
+        {
+          "name": "get-project-assets",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 93
+        },
+        {
+          "name": "create-videojungle-project",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 86
+        },
+        {
+          "name": "edit-locally",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 61
+        },
+        {
+          "name": "search-local-videos",
+          "repo": "burningion/video-editing-mcp",
+          "all_properties": [
+            "COMMAND_EXEC",
+            "FILE_SYSTEM"
+          ],
+          "description_length": 11
+        }
+      ]
+    },
+    "description_length_impact": {
+      "short_lt50": {
+        "count": 154,
+        "avg_transparency": 0.18181818181818182
+      },
+      "medium_50_200": {
+        "count": 392,
+        "avg_transparency": 0.22576530612244897
+      },
+      "long_gt200": {
+        "count": 369,
+        "avg_transparency": 0.5975609756097561
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+======================================================================
+PAPER 2: SECURITY TRANSPARENCY IN MCP TOOL DESCRIPTIONS
+Empirical Study Results
+======================================================================
+
+1. DATASET OVERVIEW
+----------------------------------------
+Total MCP tools analyzed: 6877
+Tools with security-relevant methods (SRMs): 1153
+Tools with extracted descriptions: 4821
+Analyzable tools (SRM + description): 915
+
+
+2. RQ1: HOW TRANSPARENT ARE MCP TOOL DESCRIPTIONS?
+----------------------------------------
+Average transparency score: 36.8%
+Median transparency score: 0.0%
+Fully transparent (score=1.0): 320 (35.0%)
+Partially transparent (0<score<1): 34 (3.7%)
+Not transparent at all (score=0): 561 (61.3%)
+
+Per-Property Transparency Rates:
+Property             Risk       Mentioned    Total    Rate    
+----------------------------------------------------------
+CRYPTO               Medium     0            11       0.0%
+COMMAND_EXEC         Critical   7            67       10.4%
+INFO_EXPOSURE        Medium     88           411      21.4%
+NETWORK              High       125          296      42.2%
+FILE_SYSTEM          High       74           119      62.2%
+DATABASE             High       79           117      67.5%
+
+By Language:
+  python: 593 tools, avg transparency 42.7%, 237 fully transparent, 324 not transparent
+  typescript: 266 tools, avg transparency 31.2%, 82 fully transparent, 182 not transparent
+  javascript: 56 tools, avg transparency 1.8%, 1 fully transparent, 55 not transparent
+
+
+3. RQ3: WHAT SECURITY INFO IS MOST COMMONLY MISSING?
+----------------------------------------
+
+Missing Rates by Property (most to least missing):
+Property             Risk       Missing    Total    Missing Rate
+------------------------------------------------------------
+CRYPTO               Medium     11         11       100.0%
+COMMAND_EXEC         Critical   60         67       89.6%
+INFO_EXPOSURE        Medium     323        411      78.6%
+NETWORK              High       171        296      57.8%
+FILE_SYSTEM          High       45         119      37.8%
+DATABASE             High       38         117      32.5%
+
+Top Missing Combinations:
+  INFO_EXPOSURE: 289 tools
+  NETWORK: 137 tools
+  COMMAND_EXEC: 45 tools
+  DATABASE: 38 tools
+  INFO_EXPOSURE + NETWORK: 29 tools
+
+Critical Finding - COMMAND_EXEC:
+  60 out of 67 tools with command execution
+  capability do NOT mention it in their description
+  Examples:
+    - look (repo: ahujasid/blender-mcp)
+    - create-videojungle-project (repo: burningion/video-editing-mcp)
+    - edit-locally (repo: burningion/video-editing-mcp)
+    - generate-edit-from-videos (repo: burningion/video-editing-mcp)
+    - generate-edit-from-single-video (repo: burningion/video-editing-mcp)
+
+Description Length Impact on Transparency:
+  Short (<50 chars): 154 tools, avg 18.2%
+  Medium (50-200): 392 tools, avg 22.6%
+  Long (>200 chars): 369 tools, avg 59.8%
+
+
+4. KEY FINDINGS
+----------------------------------------
+- Least transparent property: CRYPTO (0.0% mention rate)
+- Most transparent property: DATABASE (67.5% mention rate)
+- 61% of security-critical tools have ZERO security transparency
+- Average transparency score is only 37%
+- 90% of tools capable of command execution do not disclose this
+
+
+5. RQ2: CAN LLMs ASSESS TRANSPARENCY BETTER THAN KEYWORDS?
+----------------------------------------
+(Requires running llm_analyzer.py with API access)
+Script is ready at: scripts/llm_analyzer.py
+Run: python3 scripts/llm_analyzer.py --input data/tools_with_descriptions.jsonl \
+     --output results/llm_analysis.jsonl --summary results/llm_summary.json

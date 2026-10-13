@@ -1,0 +1,58 @@
+{
+  "total_tools": 6877,
+  "tools_with_srms": 1153,
+  "tools_without_srms": 5724,
+  "tools_with_description": 4821,
+  "tools_without_description": 2056,
+  "tools_with_srms_and_description": 915,
+  "tools_analyzable": 915,
+  "transparency": {
+    "average_score": 0.3683,
+    "fully_transparent": 320,
+    "partially_transparent": 34,
+    "not_transparent": 561,
+    "total_scored": 915
+  },
+  "per_property": {
+    "COMMAND_EXEC": {
+      "total_tools": 67,
+      "mentioned_in_desc": 7,
+      "rate": 0.1044776119402985
+    },
+    "FILE_SYSTEM": {
+      "total_tools": 119,
+      "mentioned_in_desc": 74,
+      "rate": 0.6218487394957983
+    },
+    "NETWORK": {
+      "total_tools": 296,
+      "mentioned_in_desc": 125,
+      "rate": 0.4222972972972973
+    },
+    "DATABASE": {
+      "total_tools": 117,
+      "mentioned_in_desc": 79,
+      "rate": 0.6752136752136753
+    },
+    "INFO_EXPOSURE": {
+      "total_tools": 411,
+      "mentioned_in_desc": 88,
+      "rate": 0.2141119221411192
+    },
+    "CRYPTO": {
+      "total_tools": 11,
+      "mentioned_in_desc": 0,
+      "rate": 0.0
+    },
+    "DESERIALIZATION": {
+      "total_tools": 0,
+      "mentioned_in_desc": 0,
+      "rate": 0
+    },
+    "AUTH": {
+      "total_tools": 0,
+      "mentioned_in_desc": 0,
+      "rate": 0
+    }
+  }
+}

@@ -1,0 +1,1591 @@
+{
+  "dataset": {
+    "total_tools": 1153,
+    "with_properties": 1153,
+    "with_description": 915,
+    "analyzable": 915
+  },
+  "keyword": {
+    "threshold": 0.5,
+    "avg_transparency": 0.4510018214936247,
+    "median_transparency": 0.0,
+    "fully_transparent": 396,
+    "partially_transparent": 33,
+    "not_transparent": 486,
+    "total_scored": 915,
+    "per_property": {
+      "FILE_SYSTEM": {
+        "total": 119,
+        "mentioned": 73,
+        "rate": 0.6134453781512605,
+        "missing_rate": 0.38655462184873945,
+        "avg_similarity": 0.6134453781512605,
+        "risk": "High"
+      },
+      "NETWORK": {
+        "total": 296,
+        "mentioned": 134,
+        "rate": 0.4527027027027027,
+        "missing_rate": 0.5472972972972974,
+        "avg_similarity": 0.4527027027027027,
+        "risk": "High"
+      },
+      "COMMAND_EXEC": {
+        "total": 67,
+        "mentioned": 23,
+        "rate": 0.34328358208955223,
+        "missing_rate": 0.6567164179104478,
+        "avg_similarity": 0.34328358208955223,
+        "risk": "Critical"
+      },
+      "INFO_EXPOSURE": {
+        "total": 411,
+        "mentioned": 138,
+        "rate": 0.3357664233576642,
+        "missing_rate": 0.6642335766423357,
+        "avg_similarity": 0.3357664233576642,
+        "risk": "Medium"
+      },
+      "DATABASE": {
+        "total": 117,
+        "mentioned": 76,
+        "rate": 0.6495726495726496,
+        "missing_rate": 0.3504273504273504,
+        "avg_similarity": 0.6495726495726496,
+        "risk": "High"
+      },
+      "CRYPTO": {
+        "total": 11,
+        "mentioned": 9,
+        "rate": 0.8181818181818182,
+        "missing_rate": 0.18181818181818177,
+        "avg_similarity": 0.8181818181818182,
+        "risk": "Medium"
+      }
+    }
+  },
+  "tfidf_thresholds": {
+    "0.05": {
+      "threshold": 0.05,
+      "avg_transparency": 0.23442622950819672,
+      "median_transparency": 0.0,
+      "fully_transparent": 203,
+      "partially_transparent": 23,
+      "not_transparent": 689,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 58,
+          "rate": 0.48739495798319327,
+          "missing_rate": 0.5126050420168067,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 60,
+          "rate": 0.20270270270270271,
+          "missing_rate": 0.7972972972972973,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 3,
+          "rate": 0.04477611940298507,
+          "missing_rate": 0.9552238805970149,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 56,
+          "rate": 0.1362530413625304,
+          "missing_rate": 0.8637469586374695,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 51,
+          "rate": 0.4358974358974359,
+          "missing_rate": 0.5641025641025641,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 2,
+          "rate": 0.18181818181818182,
+          "missing_rate": 0.8181818181818181,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.1": {
+      "threshold": 0.1,
+      "avg_transparency": 0.023861566484517302,
+      "median_transparency": 0.0,
+      "fully_transparent": 21,
+      "partially_transparent": 2,
+      "not_transparent": 892,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 7,
+          "rate": 0.058823529411764705,
+          "missing_rate": 0.9411764705882353,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 9,
+          "rate": 0.030405405405405407,
+          "missing_rate": 0.9695945945945946,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 7,
+          "rate": 0.05982905982905983,
+          "missing_rate": 0.9401709401709402,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.15": {
+      "threshold": 0.15,
+      "avg_transparency": 0.003278688524590164,
+      "median_transparency": 0.0,
+      "fully_transparent": 3,
+      "partially_transparent": 0,
+      "not_transparent": 912,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 2,
+          "rate": 0.006756756756756757,
+          "missing_rate": 0.9932432432432432,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 1,
+          "rate": 0.008547008547008548,
+          "missing_rate": 0.9914529914529915,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.2": {
+      "threshold": 0.2,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.25": {
+      "threshold": 0.25,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.3": {
+      "threshold": 0.3,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.4": {
+      "threshold": 0.4,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.5": {
+      "threshold": 0.5,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.047762450715397704,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02895397807949921,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.01577256051064762,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.02276080916073568,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.04392137274028941,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.033271964152771207,
+          "risk": "Medium"
+        }
+      }
+    }
+  },
+  "embedding_thresholds": {
+    "0.15": {
+      "threshold": 0.15,
+      "avg_transparency": 0.2216757741347905,
+      "median_transparency": 0.0,
+      "fully_transparent": 189,
+      "partially_transparent": 28,
+      "not_transparent": 698,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 22,
+          "rate": 0.18487394957983194,
+          "missing_rate": 0.8151260504201681,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 48,
+          "rate": 0.16216216216216217,
+          "missing_rate": 0.8378378378378378,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 8,
+          "rate": 0.11940298507462686,
+          "missing_rate": 0.8805970149253731,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 87,
+          "rate": 0.2116788321167883,
+          "missing_rate": 0.7883211678832117,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 59,
+          "rate": 0.5042735042735043,
+          "missing_rate": 0.49572649572649574,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 1,
+          "rate": 0.09090909090909091,
+          "missing_rate": 0.9090909090909091,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.2": {
+      "threshold": 0.2,
+      "avg_transparency": 0.12404371584699453,
+      "median_transparency": 0.0,
+      "fully_transparent": 107,
+      "partially_transparent": 13,
+      "not_transparent": 795,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 14,
+          "rate": 0.11764705882352941,
+          "missing_rate": 0.8823529411764706,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 29,
+          "rate": 0.09797297297297297,
+          "missing_rate": 0.902027027027027,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 2,
+          "rate": 0.029850746268656716,
+          "missing_rate": 0.9701492537313433,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 47,
+          "rate": 0.11435523114355231,
+          "missing_rate": 0.8856447688564477,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 32,
+          "rate": 0.27350427350427353,
+          "missing_rate": 0.7264957264957265,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 1,
+          "rate": 0.09090909090909091,
+          "missing_rate": 0.9090909090909091,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.25": {
+      "threshold": 0.25,
+      "avg_transparency": 0.048087431693989074,
+      "median_transparency": 0.0,
+      "fully_transparent": 41,
+      "partially_transparent": 6,
+      "not_transparent": 868,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 11,
+          "rate": 0.09243697478991597,
+          "missing_rate": 0.907563025210084,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 12,
+          "rate": 0.04054054054054054,
+          "missing_rate": 0.9594594594594594,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 1,
+          "rate": 0.014925373134328358,
+          "missing_rate": 0.9850746268656716,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 12,
+          "rate": 0.029197080291970802,
+          "missing_rate": 0.9708029197080292,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 13,
+          "rate": 0.1111111111111111,
+          "missing_rate": 0.8888888888888888,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.3": {
+      "threshold": 0.3,
+      "avg_transparency": 0.018032786885245903,
+      "median_transparency": 0.0,
+      "fully_transparent": 16,
+      "partially_transparent": 1,
+      "not_transparent": 898,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 6,
+          "rate": 0.05042016806722689,
+          "missing_rate": 0.9495798319327731,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 5,
+          "rate": 0.016891891891891893,
+          "missing_rate": 0.9831081081081081,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 1,
+          "rate": 0.0024330900243309003,
+          "missing_rate": 0.9975669099756691,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 5,
+          "rate": 0.042735042735042736,
+          "missing_rate": 0.9572649572649573,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.35": {
+      "threshold": 0.35,
+      "avg_transparency": 0.009836065573770493,
+      "median_transparency": 0.0,
+      "fully_transparent": 9,
+      "partially_transparent": 0,
+      "not_transparent": 906,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 5,
+          "rate": 0.04201680672268908,
+          "missing_rate": 0.957983193277311,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 3,
+          "rate": 0.010135135135135136,
+          "missing_rate": 0.9898648648648649,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 1,
+          "rate": 0.008547008547008548,
+          "missing_rate": 0.9914529914529915,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.4": {
+      "threshold": 0.4,
+      "avg_transparency": 0.006557377049180328,
+      "median_transparency": 0.0,
+      "fully_transparent": 6,
+      "partially_transparent": 0,
+      "not_transparent": 909,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 3,
+          "rate": 0.025210084033613446,
+          "missing_rate": 0.9747899159663865,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 2,
+          "rate": 0.006756756756756757,
+          "missing_rate": 0.9932432432432432,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 1,
+          "rate": 0.008547008547008548,
+          "missing_rate": 0.9914529914529915,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.45": {
+      "threshold": 0.45,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    },
+    "0.5": {
+      "threshold": 0.5,
+      "avg_transparency": 0.0,
+      "median_transparency": 0.0,
+      "fully_transparent": 0,
+      "partially_transparent": 0,
+      "not_transparent": 915,
+      "total_scored": 915,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.0631022494943703,
+          "risk": "High"
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07723507663467899,
+          "risk": "High"
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.062204232439398766,
+          "risk": "Critical"
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07518225039611513,
+          "risk": "Medium"
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.1397158290601821,
+          "risk": "High"
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0,
+          "avg_similarity": 0.07183803922750732,
+          "risk": "Medium"
+        }
+      }
+    }
+  },
+  "statistics": {
+    "chi_square_property_rates": {
+      "chi2": 62.464,
+      "p_value": 3.7590206832599035e-12,
+      "dof": 5,
+      "cramers_v": 0.2473,
+      "significant_005": true,
+      "significant_001": true
+    },
+    "pairwise_fisher_exact": {
+      "COMMAND_EXEC_vs_FILE_SYSTEM": {
+        "rate_1": 0.3433,
+        "rate_2": 0.6134,
+        "p_value": 0.0004505312165959447,
+        "significant_005": true
+      },
+      "COMMAND_EXEC_vs_NETWORK": {
+        "rate_1": 0.3433,
+        "rate_2": 0.4527,
+        "p_value": 0.13269000438589482,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_DATABASE": {
+        "rate_1": 0.3433,
+        "rate_2": 0.6496,
+        "p_value": 6.706940082929603e-05,
+        "significant_005": true
+      },
+      "COMMAND_EXEC_vs_INFO_EXPOSURE": {
+        "rate_1": 0.3433,
+        "rate_2": 0.3358,
+        "p_value": 0.8900757941436168,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_CRYPTO": {
+        "rate_1": 0.3433,
+        "rate_2": 0.8182,
+        "p_value": 0.005845191699517791,
+        "significant_005": true
+      },
+      "FILE_SYSTEM_vs_NETWORK": {
+        "rate_1": 0.6134,
+        "rate_2": 0.4527,
+        "p_value": 0.00338580499700764,
+        "significant_005": true
+      },
+      "FILE_SYSTEM_vs_DATABASE": {
+        "rate_1": 0.6134,
+        "rate_2": 0.6496,
+        "p_value": 0.5913500014092785,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_INFO_EXPOSURE": {
+        "rate_1": 0.6134,
+        "rate_2": 0.3358,
+        "p_value": 7.830610852560707e-08,
+        "significant_005": true
+      },
+      "FILE_SYSTEM_vs_CRYPTO": {
+        "rate_1": 0.6134,
+        "rate_2": 0.8182,
+        "p_value": 0.211816118157589,
+        "significant_005": false
+      },
+      "NETWORK_vs_DATABASE": {
+        "rate_1": 0.4527,
+        "rate_2": 0.6496,
+        "p_value": 0.0003162076414674552,
+        "significant_005": true
+      },
+      "NETWORK_vs_INFO_EXPOSURE": {
+        "rate_1": 0.4527,
+        "rate_2": 0.3358,
+        "p_value": 0.0017403197401629467,
+        "significant_005": true
+      },
+      "NETWORK_vs_CRYPTO": {
+        "rate_1": 0.4527,
+        "rate_2": 0.8182,
+        "p_value": 0.027211592832228404,
+        "significant_005": true
+      },
+      "DATABASE_vs_INFO_EXPOSURE": {
+        "rate_1": 0.6496,
+        "rate_2": 0.3358,
+        "p_value": 2.3441635282883488e-09,
+        "significant_005": true
+      },
+      "DATABASE_vs_CRYPTO": {
+        "rate_1": 0.6496,
+        "rate_2": 0.8182,
+        "p_value": 0.33261851577553336,
+        "significant_005": false
+      },
+      "INFO_EXPOSURE_vs_CRYPTO": {
+        "rate_1": 0.3358,
+        "rate_2": 0.8182,
+        "p_value": 0.0017256420693138863,
+        "significant_005": true
+      }
+    },
+    "confidence_intervals": {
+      "COMMAND_EXEC": {
+        "rate": 0.3433,
+        "n": 67,
+        "ci_95_low": 0.2409,
+        "ci_95_high": 0.4627
+      },
+      "FILE_SYSTEM": {
+        "rate": 0.6134,
+        "n": 119,
+        "ci_95_low": 0.5237,
+        "ci_95_high": 0.6961
+      },
+      "NETWORK": {
+        "rate": 0.4527,
+        "n": 296,
+        "ci_95_low": 0.397,
+        "ci_95_high": 0.5097
+      },
+      "DATABASE": {
+        "rate": 0.6496,
+        "n": 117,
+        "ci_95_low": 0.5596,
+        "ci_95_high": 0.73
+      },
+      "INFO_EXPOSURE": {
+        "rate": 0.3358,
+        "n": 411,
+        "ci_95_low": 0.2918,
+        "ci_95_high": 0.3828
+      },
+      "CRYPTO": {
+        "rate": 0.8182,
+        "n": 11,
+        "ci_95_low": 0.523,
+        "ci_95_high": 0.9486
+      }
+    },
+    "mann_whitney_language": {
+      "javascript_vs_python": {
+        "n1": 56,
+        "n2": 593,
+        "mean1": 0.0536,
+        "mean2": 0.4969,
+        "U_statistic": 8860.0,
+        "p_value": 6.105126425456627e-11,
+        "rank_biserial_r": 0.4664,
+        "significant_005": true
+      },
+      "javascript_vs_typescript": {
+        "n1": 56,
+        "n2": 266,
+        "mean1": 0.0536,
+        "mean2": 0.4323,
+        "U_statistic": 4602.0,
+        "p_value": 8.073298231081697e-08,
+        "rank_biserial_r": 0.3821,
+        "significant_005": true
+      },
+      "python_vs_typescript": {
+        "n1": 593,
+        "n2": 266,
+        "mean1": 0.4969,
+        "mean2": 0.4323,
+        "U_statistic": 84218.0,
+        "p_value": 0.07096568142986714,
+        "rank_biserial_r": -0.0678,
+        "significant_005": false
+      }
+    },
+    "kruskal_wallis_language": {
+      "H_statistic": 43.1037,
+      "p_value": 4.3667188221830614e-10,
+      "significant_005": true
+    },
+    "spearman_length_transparency": {
+      "rho": 0.4618,
+      "p_value": 1.5892488748247857e-49,
+      "n": 915,
+      "significant_005": true,
+      "interpretation": "moderate positive"
+    },
+    "overall_transparency_ci": {
+      "mean": 0.451,
+      "std": 0.4887,
+      "se": 0.0162,
+      "ci_95_low": 0.4193,
+      "ci_95_high": 0.4827,
+      "n": 915
+    }
+  },
+  "tfidf_statistics": {
+    "chi_square_property_rates": {
+      "chi2": 4.5212,
+      "p_value": 0.4770498815246298,
+      "dof": 5,
+      "cramers_v": 0.0665,
+      "significant_005": false,
+      "significant_001": false
+    },
+    "pairwise_fisher_exact": {
+      "COMMAND_EXEC_vs_FILE_SYSTEM": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_NETWORK": {
+        "rate_1": 0.0,
+        "rate_2": 0.0068,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_DATABASE": {
+        "rate_1": 0.0,
+        "rate_2": 0.0085,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_CRYPTO": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_NETWORK": {
+        "rate_1": 0.0,
+        "rate_2": 0.0068,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_DATABASE": {
+        "rate_1": 0.0,
+        "rate_2": 0.0085,
+        "p_value": 0.4957627118644068,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_CRYPTO": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "NETWORK_vs_DATABASE": {
+        "rate_1": 0.0068,
+        "rate_2": 0.0085,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "NETWORK_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0068,
+        "rate_2": 0.0,
+        "p_value": 0.17494019737870184,
+        "significant_005": false
+      },
+      "NETWORK_vs_CRYPTO": {
+        "rate_1": 0.0068,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "DATABASE_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0085,
+        "rate_2": 0.0,
+        "p_value": 0.22159090909090906,
+        "significant_005": false
+      },
+      "DATABASE_vs_CRYPTO": {
+        "rate_1": 0.0085,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "INFO_EXPOSURE_vs_CRYPTO": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      }
+    },
+    "confidence_intervals": {
+      "COMMAND_EXEC": {
+        "rate": 0.0,
+        "n": 67,
+        "ci_95_low": 0,
+        "ci_95_high": 0.0542
+      },
+      "FILE_SYSTEM": {
+        "rate": 0.0,
+        "n": 119,
+        "ci_95_low": 0,
+        "ci_95_high": 0.0313
+      },
+      "NETWORK": {
+        "rate": 0.0068,
+        "n": 296,
+        "ci_95_low": 0.0019,
+        "ci_95_high": 0.0243
+      },
+      "DATABASE": {
+        "rate": 0.0085,
+        "n": 117,
+        "ci_95_low": 0.0015,
+        "ci_95_high": 0.0468
+      },
+      "INFO_EXPOSURE": {
+        "rate": 0.0,
+        "n": 411,
+        "ci_95_low": 0,
+        "ci_95_high": 0.0093
+      },
+      "CRYPTO": {
+        "rate": 0.0,
+        "n": 11,
+        "ci_95_low": 0,
+        "ci_95_high": 0.2588
+      }
+    },
+    "mann_whitney_language": {
+      "javascript_vs_python": {
+        "n1": 56,
+        "n2": 593,
+        "mean1": 0.0,
+        "mean2": 0.0051,
+        "U_statistic": 16520.0,
+        "p_value": 0.5961712763534128,
+        "rank_biserial_r": 0.0051,
+        "significant_005": false
+      },
+      "javascript_vs_typescript": {
+        "n1": 56,
+        "n2": 266,
+        "mean1": 0.0,
+        "mean2": 0.0,
+        "U_statistic": 7448.0,
+        "p_value": NaN,
+        "rank_biserial_r": 0.0,
+        "significant_005": false
+      },
+      "python_vs_typescript": {
+        "n1": 593,
+        "n2": 266,
+        "mean1": 0.0051,
+        "mean2": 0.0,
+        "U_statistic": 79268.0,
+        "p_value": 0.24607240305557965,
+        "rank_biserial_r": -0.0051,
+        "significant_005": false
+      }
+    },
+    "kruskal_wallis_language": {
+      "H_statistic": 1.6326,
+      "p_value": 0.44206925694791965,
+      "significant_005": false
+    },
+    "spearman_length_transparency": {
+      "rho": 0.0595,
+      "p_value": 0.07187281752216275,
+      "n": 915,
+      "significant_005": false,
+      "interpretation": "negligible"
+    },
+    "overall_transparency_ci": {
+      "mean": 0.0033,
+      "std": 0.0572,
+      "se": 0.0019,
+      "ci_95_low": -0.0004,
+      "ci_95_high": 0.007,
+      "n": 915
+    }
+  },
+  "embedding_statistics": {
+    "chi_square_property_rates": {
+      "chi2": 19.423,
+      "p_value": 0.0016027461484712068,
+      "dof": 5,
+      "cramers_v": 0.1379,
+      "significant_005": true,
+      "significant_001": true
+    },
+    "pairwise_fisher_exact": {
+      "COMMAND_EXEC_vs_FILE_SYSTEM": {
+        "rate_1": 0.0,
+        "rate_2": 0.042,
+        "p_value": 0.16133128391997636,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_NETWORK": {
+        "rate_1": 0.0,
+        "rate_2": 0.0101,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_DATABASE": {
+        "rate_1": 0.0,
+        "rate_2": 0.0085,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "COMMAND_EXEC_vs_CRYPTO": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_NETWORK": {
+        "rate_1": 0.042,
+        "rate_2": 0.0101,
+        "p_value": 0.046610532829978304,
+        "significant_005": true
+      },
+      "FILE_SYSTEM_vs_DATABASE": {
+        "rate_1": 0.042,
+        "rate_2": 0.0085,
+        "p_value": 0.21284274578494283,
+        "significant_005": false
+      },
+      "FILE_SYSTEM_vs_INFO_EXPOSURE": {
+        "rate_1": 0.042,
+        "rate_2": 0.0,
+        "p_value": 0.0005340831008484107,
+        "significant_005": true
+      },
+      "FILE_SYSTEM_vs_CRYPTO": {
+        "rate_1": 0.042,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "NETWORK_vs_DATABASE": {
+        "rate_1": 0.0101,
+        "rate_2": 0.0085,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "NETWORK_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0101,
+        "rate_2": 0.0,
+        "p_value": 0.07295378443877779,
+        "significant_005": false
+      },
+      "NETWORK_vs_CRYPTO": {
+        "rate_1": 0.0101,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "DATABASE_vs_INFO_EXPOSURE": {
+        "rate_1": 0.0085,
+        "rate_2": 0.0,
+        "p_value": 0.22159090909090906,
+        "significant_005": false
+      },
+      "DATABASE_vs_CRYPTO": {
+        "rate_1": 0.0085,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      },
+      "INFO_EXPOSURE_vs_CRYPTO": {
+        "rate_1": 0.0,
+        "rate_2": 0.0,
+        "p_value": 1.0,
+        "significant_005": false
+      }
+    },
+    "confidence_intervals": {
+      "COMMAND_EXEC": {
+        "rate": 0.0,
+        "n": 67,
+        "ci_95_low": 0,
+        "ci_95_high": 0.0542
+      },
+      "FILE_SYSTEM": {
+        "rate": 0.042,
+        "n": 119,
+        "ci_95_low": 0.0181,
+        "ci_95_high": 0.0946
+      },
+      "NETWORK": {
+        "rate": 0.0101,
+        "n": 296,
+        "ci_95_low": 0.0035,
+        "ci_95_high": 0.0294
+      },
+      "DATABASE": {
+        "rate": 0.0085,
+        "n": 117,
+        "ci_95_low": 0.0015,
+        "ci_95_high": 0.0468
+      },
+      "INFO_EXPOSURE": {
+        "rate": 0.0,
+        "n": 411,
+        "ci_95_low": 0,
+        "ci_95_high": 0.0093
+      },
+      "CRYPTO": {
+        "rate": 0.0,
+        "n": 11,
+        "ci_95_low": 0,
+        "ci_95_high": 0.2588
+      }
+    },
+    "mann_whitney_language": {
+      "javascript_vs_python": {
+        "n1": 56,
+        "n2": 593,
+        "mean1": 0.0,
+        "mean2": 0.0067,
+        "U_statistic": 16492.0,
+        "p_value": 0.5396890206238594,
+        "rank_biserial_r": 0.0067,
+        "significant_005": false
+      },
+      "javascript_vs_typescript": {
+        "n1": 56,
+        "n2": 266,
+        "mean1": 0.0,
+        "mean2": 0.0188,
+        "U_statistic": 7308.0,
+        "p_value": 0.3036000557310803,
+        "rank_biserial_r": 0.0188,
+        "significant_005": false
+      },
+      "python_vs_typescript": {
+        "n1": 593,
+        "n2": 266,
+        "mean1": 0.0067,
+        "mean2": 0.0188,
+        "U_statistic": 77918.5,
+        "p_value": 0.10912636806869223,
+        "rank_biserial_r": 0.0121,
+        "significant_005": false
+      }
+    },
+    "kruskal_wallis_language": {
+      "H_statistic": 3.3274,
+      "p_value": 0.1894390777469144,
+      "significant_005": false
+    },
+    "spearman_length_transparency": {
+      "rho": -0.0245,
+      "p_value": 0.459453490417185,
+      "n": 915,
+      "significant_005": false,
+      "interpretation": "negligible"
+    },
+    "overall_transparency_ci": {
+      "mean": 0.0098,
+      "std": 0.0987,
+      "se": 0.0033,
+      "ci_95_low": 0.0034,
+      "ci_95_high": 0.0162,
+      "n": 915
+    }
+  }
+}
