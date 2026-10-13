@@ -1,0 +1,13 @@
+# Requirements for multi_technique_analyzer.py
+# Core (required)
+numpy>=1.24
+scikit-learn>=1.3
+
+# Optional - enables sentence embedding technique
+sentence-transformers>=2.2
+
+# Optional - enables Word Mover's Distance technique
+gensim>=4.3
+
+# Optional - enables BM25 technique
+rank-bm25>=0.2
