@@ -1,0 +1,331 @@
+{
+  "models": [
+    "gemma2-27b",
+    "llama3.1-70b",
+    "qwen2.5-72b"
+  ],
+  "per_model_summaries": {
+    "llama3.1-70b": {
+      "model_name": "llama3.1-70b",
+      "model_hf_id": "TechxGenus/Meta-Llama-3.1-70B-Instruct-AWQ",
+      "model_display": "Llama 3.1 70B Instruct (AWQ)",
+      "total_tools": 915,
+      "total_assessed": 1016,
+      "total_mentioned": 449,
+      "total_errors": 2,
+      "overall_rate": 0.4419291338582677,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 117,
+          "mentioned": 94,
+          "high_conf": 102,
+          "medium_conf": 15,
+          "low_conf": 0,
+          "rate": 0.8034188034188035,
+          "missing_rate": 0.19658119658119655
+        },
+        "NETWORK": {
+          "total": 295,
+          "mentioned": 153,
+          "high_conf": 271,
+          "medium_conf": 24,
+          "low_conf": 0,
+          "rate": 0.5186440677966102,
+          "missing_rate": 0.4813559322033898
+        },
+        "COMMAND_EXEC": {
+          "total": 66,
+          "mentioned": 6,
+          "high_conf": 66,
+          "medium_conf": 0,
+          "low_conf": 0,
+          "rate": 0.09090909090909091,
+          "missing_rate": 0.9090909090909091
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 96,
+          "high_conf": 402,
+          "medium_conf": 9,
+          "low_conf": 0,
+          "rate": 0.23357664233576642,
+          "missing_rate": 0.7664233576642336
+        },
+        "DATABASE": {
+          "total": 116,
+          "mentioned": 100,
+          "high_conf": 116,
+          "medium_conf": 0,
+          "low_conf": 0,
+          "rate": 0.8620689655172413,
+          "missing_rate": 0.13793103448275867
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "high_conf": 11,
+          "medium_conf": 0,
+          "low_conf": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0
+        }
+      },
+      "confidence_distribution": {
+        "high": 968,
+        "medium": 48
+      },
+      "language_breakdown": {
+        "typescript": {
+          "total": 272,
+          "mentioned": 95,
+          "rate": 0.3492647058823529
+        },
+        "python": {
+          "total": 688,
+          "mentioned": 352,
+          "rate": 0.5116279069767442
+        },
+        "javascript": {
+          "total": 56,
+          "mentioned": 2,
+          "rate": 0.03571428571428571
+        }
+      }
+    },
+    "qwen2.5-72b": {
+      "model_name": "qwen2.5-72b",
+      "model_hf_id": "Qwen/Qwen2.5-72B-Instruct-AWQ",
+      "model_display": "Qwen 2.5 72B Instruct (AWQ)",
+      "total_tools": 915,
+      "total_assessed": 1021,
+      "total_mentioned": 274,
+      "total_errors": 0,
+      "overall_rate": 0.2683643486777669,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 48,
+          "high_conf": 99,
+          "medium_conf": 18,
+          "low_conf": 2,
+          "rate": 0.40336134453781514,
+          "missing_rate": 0.5966386554621849
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 102,
+          "high_conf": 202,
+          "medium_conf": 86,
+          "low_conf": 8,
+          "rate": 0.34459459459459457,
+          "missing_rate": 0.6554054054054055
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 1,
+          "high_conf": 37,
+          "medium_conf": 30,
+          "low_conf": 0,
+          "rate": 0.014925373134328358,
+          "missing_rate": 0.9850746268656716
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 44,
+          "high_conf": 168,
+          "medium_conf": 242,
+          "low_conf": 1,
+          "rate": 0.1070559610705596,
+          "missing_rate": 0.8929440389294404
+        },
+        "DATABASE": {
+          "total": 117,
+          "mentioned": 79,
+          "high_conf": 97,
+          "medium_conf": 19,
+          "low_conf": 1,
+          "rate": 0.6752136752136753,
+          "missing_rate": 0.32478632478632474
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "high_conf": 8,
+          "medium_conf": 0,
+          "low_conf": 3,
+          "rate": 0.0,
+          "missing_rate": 1.0
+        }
+      },
+      "confidence_distribution": {
+        "medium": 395,
+        "high": 611,
+        "low": 15
+      },
+      "language_breakdown": {
+        "typescript": {
+          "total": 272,
+          "mentioned": 58,
+          "rate": 0.21323529411764705
+        },
+        "python": {
+          "total": 693,
+          "mentioned": 216,
+          "rate": 0.3116883116883117
+        },
+        "javascript": {
+          "total": 56,
+          "mentioned": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "gemma2-27b": {
+      "model_name": "gemma2-27b",
+      "model_hf_id": "google/gemma-2-27b-it",
+      "model_display": "Gemma 2 27B Instruct (FP16)",
+      "total_tools": 915,
+      "total_assessed": 1012,
+      "total_mentioned": 270,
+      "total_errors": 0,
+      "overall_rate": 0.26679841897233203,
+      "per_property": {
+        "FILE_SYSTEM": {
+          "total": 119,
+          "mentioned": 54,
+          "high_conf": 93,
+          "medium_conf": 25,
+          "low_conf": 1,
+          "rate": 0.453781512605042,
+          "missing_rate": 0.546218487394958
+        },
+        "NETWORK": {
+          "total": 296,
+          "mentioned": 85,
+          "high_conf": 186,
+          "medium_conf": 92,
+          "low_conf": 18,
+          "rate": 0.28716216216216217,
+          "missing_rate": 0.7128378378378378
+        },
+        "COMMAND_EXEC": {
+          "total": 67,
+          "mentioned": 1,
+          "high_conf": 25,
+          "medium_conf": 42,
+          "low_conf": 0,
+          "rate": 0.014925373134328358,
+          "missing_rate": 0.9850746268656716
+        },
+        "INFO_EXPOSURE": {
+          "total": 411,
+          "mentioned": 56,
+          "high_conf": 55,
+          "medium_conf": 355,
+          "low_conf": 1,
+          "rate": 0.1362530413625304,
+          "missing_rate": 0.8637469586374695
+        },
+        "DATABASE": {
+          "total": 108,
+          "mentioned": 74,
+          "high_conf": 97,
+          "medium_conf": 11,
+          "low_conf": 0,
+          "rate": 0.6851851851851852,
+          "missing_rate": 0.31481481481481477
+        },
+        "CRYPTO": {
+          "total": 11,
+          "mentioned": 0,
+          "high_conf": 10,
+          "medium_conf": 1,
+          "low_conf": 0,
+          "rate": 0.0,
+          "missing_rate": 1.0
+        }
+      },
+      "confidence_distribution": {
+        "high": 466,
+        "medium": 526,
+        "low": 20
+      },
+      "language_breakdown": {
+        "typescript": {
+          "total": 272,
+          "mentioned": 63,
+          "rate": 0.23161764705882354
+        },
+        "python": {
+          "total": 684,
+          "mentioned": 206,
+          "rate": 0.30116959064327486
+        },
+        "javascript": {
+          "total": 56,
+          "mentioned": 1,
+          "rate": 0.017857142857142856
+        }
+      }
+    }
+  },
+  "inter_model_agreement": {
+    "total_comparisons": 996,
+    "full_agreement": 774,
+    "full_agreement_rate": 0.7771084337349398,
+    "majority_mentioned": 298,
+    "majority_not_mentioned": 698,
+    "pairwise_agreement": {
+      "gemma2-27b_vs_llama3.1-70b": {
+        "agree": 801,
+        "total": 982,
+        "rate": 0.8156822810590632
+      },
+      "gemma2-27b_vs_qwen2.5-72b": {
+        "agree": 916,
+        "total": 987,
+        "rate": 0.92806484295846
+      },
+      "llama3.1-70b_vs_qwen2.5-72b": {
+        "agree": 800,
+        "total": 991,
+        "rate": 0.8072653884964682
+      }
+    }
+  },
+  "majority_vote_transparency": {
+    "overall_rate": 0.2991967871485944,
+    "per_property": {
+      "FILE_SYSTEM": {
+        "total": 111,
+        "mentioned": 53,
+        "rate": 0.4774774774774775
+      },
+      "NETWORK": {
+        "total": 289,
+        "mentioned": 103,
+        "rate": 0.356401384083045
+      },
+      "COMMAND_EXEC": {
+        "total": 59,
+        "mentioned": 1,
+        "rate": 0.01694915254237288
+      },
+      "INFO_EXPOSURE": {
+        "total": 411,
+        "mentioned": 57,
+        "rate": 0.1386861313868613
+      },
+      "DATABASE": {
+        "total": 115,
+        "mentioned": 84,
+        "rate": 0.7304347826086957
+      },
+      "CRYPTO": {
+        "total": 11,
+        "mentioned": 0,
+        "rate": 0.0
+      }
+    }
+  }
+}

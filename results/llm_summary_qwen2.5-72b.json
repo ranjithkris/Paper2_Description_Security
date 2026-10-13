@@ -1,0 +1,88 @@
+{
+  "model_name": "qwen2.5-72b",
+  "model_hf_id": "Qwen/Qwen2.5-72B-Instruct-AWQ",
+  "model_display": "Qwen 2.5 72B Instruct (AWQ)",
+  "total_tools": 915,
+  "total_assessed": 1021,
+  "total_mentioned": 274,
+  "total_errors": 0,
+  "overall_rate": 0.2683643486777669,
+  "per_property": {
+    "FILE_SYSTEM": {
+      "total": 119,
+      "mentioned": 48,
+      "high_conf": 99,
+      "medium_conf": 18,
+      "low_conf": 2,
+      "rate": 0.40336134453781514,
+      "missing_rate": 0.5966386554621849
+    },
+    "NETWORK": {
+      "total": 296,
+      "mentioned": 102,
+      "high_conf": 202,
+      "medium_conf": 86,
+      "low_conf": 8,
+      "rate": 0.34459459459459457,
+      "missing_rate": 0.6554054054054055
+    },
+    "COMMAND_EXEC": {
+      "total": 67,
+      "mentioned": 1,
+      "high_conf": 37,
+      "medium_conf": 30,
+      "low_conf": 0,
+      "rate": 0.014925373134328358,
+      "missing_rate": 0.9850746268656716
+    },
+    "INFO_EXPOSURE": {
+      "total": 411,
+      "mentioned": 44,
+      "high_conf": 168,
+      "medium_conf": 242,
+      "low_conf": 1,
+      "rate": 0.1070559610705596,
+      "missing_rate": 0.8929440389294404
+    },
+    "DATABASE": {
+      "total": 117,
+      "mentioned": 79,
+      "high_conf": 97,
+      "medium_conf": 19,
+      "low_conf": 1,
+      "rate": 0.6752136752136753,
+      "missing_rate": 0.32478632478632474
+    },
+    "CRYPTO": {
+      "total": 11,
+      "mentioned": 0,
+      "high_conf": 8,
+      "medium_conf": 0,
+      "low_conf": 3,
+      "rate": 0.0,
+      "missing_rate": 1.0
+    }
+  },
+  "confidence_distribution": {
+    "medium": 395,
+    "high": 611,
+    "low": 15
+  },
+  "language_breakdown": {
+    "typescript": {
+      "total": 272,
+      "mentioned": 58,
+      "rate": 0.21323529411764705
+    },
+    "python": {
+      "total": 693,
+      "mentioned": 216,
+      "rate": 0.3116883116883117
+    },
+    "javascript": {
+      "total": 56,
+      "mentioned": 0,
+      "rate": 0.0
+    }
+  }
+}

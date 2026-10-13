@@ -1,0 +1,88 @@
+{
+  "model_name": "gemma2-27b",
+  "model_hf_id": "google/gemma-2-27b-it",
+  "model_display": "Gemma 2 27B Instruct (FP16)",
+  "total_tools": 915,
+  "total_assessed": 1012,
+  "total_mentioned": 270,
+  "total_errors": 0,
+  "overall_rate": 0.26679841897233203,
+  "per_property": {
+    "FILE_SYSTEM": {
+      "total": 119,
+      "mentioned": 54,
+      "high_conf": 93,
+      "medium_conf": 25,
+      "low_conf": 1,
+      "rate": 0.453781512605042,
+      "missing_rate": 0.546218487394958
+    },
+    "NETWORK": {
+      "total": 296,
+      "mentioned": 85,
+      "high_conf": 186,
+      "medium_conf": 92,
+      "low_conf": 18,
+      "rate": 0.28716216216216217,
+      "missing_rate": 0.7128378378378378
+    },
+    "COMMAND_EXEC": {
+      "total": 67,
+      "mentioned": 1,
+      "high_conf": 25,
+      "medium_conf": 42,
+      "low_conf": 0,
+      "rate": 0.014925373134328358,
+      "missing_rate": 0.9850746268656716
+    },
+    "INFO_EXPOSURE": {
+      "total": 411,
+      "mentioned": 56,
+      "high_conf": 55,
+      "medium_conf": 355,
+      "low_conf": 1,
+      "rate": 0.1362530413625304,
+      "missing_rate": 0.8637469586374695
+    },
+    "DATABASE": {
+      "total": 108,
+      "mentioned": 74,
+      "high_conf": 97,
+      "medium_conf": 11,
+      "low_conf": 0,
+      "rate": 0.6851851851851852,
+      "missing_rate": 0.31481481481481477
+    },
+    "CRYPTO": {
+      "total": 11,
+      "mentioned": 0,
+      "high_conf": 10,
+      "medium_conf": 1,
+      "low_conf": 0,
+      "rate": 0.0,
+      "missing_rate": 1.0
+    }
+  },
+  "confidence_distribution": {
+    "high": 466,
+    "medium": 526,
+    "low": 20
+  },
+  "language_breakdown": {
+    "typescript": {
+      "total": 272,
+      "mentioned": 63,
+      "rate": 0.23161764705882354
+    },
+    "python": {
+      "total": 684,
+      "mentioned": 206,
+      "rate": 0.30116959064327486
+    },
+    "javascript": {
+      "total": 56,
+      "mentioned": 1,
+      "rate": 0.017857142857142856
+    }
+  }
+}
